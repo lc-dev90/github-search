@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Search } from "@styled-icons/fluentui-system-filled/Search";
 
 // Components
 import VerticalLogo from "../assets/logo-vertical.svg";
@@ -16,15 +17,19 @@ const HomeScreen = () => {
         <form>
           <div>
             <input
-              type="search"
+              type="text"
               placeholder="Enter user name"
               onChange={(e) => setInputText(e.target.value)}
+              autoCorrect="off"
             />
           </div>
           <Link to={`/profile/${inputText}`}>
             <div>
               <button type="submit" value="Search">
-                Search
+                Search{" "}
+                <span>
+                  <SearchIcon />
+                </span>
               </button>
             </div>
           </Link>
@@ -40,7 +45,6 @@ const Main = styled.main`
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #232324;
   min-height: 100vh;
 
   input {
@@ -63,12 +67,12 @@ const Container = styled.div`
         margin: 30px 0 55px;
       }
       input {
-        padding: 12px 0;
+        padding: 10px 0;
         width: 100%;
         border: none;
         border-bottom: 4px solid;
         border-color: #8752cc;
-        color: #8752cc;
+        color: white;
         caret-color: #535353;
         font-size: 18px;
         font-weight: 700;
@@ -78,6 +82,7 @@ const Container = styled.div`
           text-align: center;
         }
       }
+
       button {
         width: 100%;
         font-family: inherit;
@@ -89,7 +94,19 @@ const Container = styled.div`
         border-radius: 5px;
         border: none;
         cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:hover {
+          background: #64418c;
+        }
       }
     }
   }
+`;
+
+const SearchIcon = styled(Search)`
+  width: 22px;
+  font-weight: bold;
+  margin-left: 6px;
 `;

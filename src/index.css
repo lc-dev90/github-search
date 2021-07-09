@@ -7,9 +7,15 @@
 body {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
+  min-height: 100vh;
+  background: #232324;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  width: 100%;
 }

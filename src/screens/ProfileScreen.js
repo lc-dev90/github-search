@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import styled from "styled-components";
 
 //Components
 import Header from "../components/Header";
+import ProfileCard from "../components/ProfileCard";
+import ProjectList from "../components/ProjectList";
 
-const ProfileScreen = () => {
+const ProfileScreen = ({ match }) => {
+  const [profile, setProfile] = useState({});
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get(
+        `https://api.github.com/users/${match.params.id}`
+      );
+      setProfile(data);
+    };
+    fetchData();
+  }, [match]);
+
   return (
     <>
       <Header />
-      <Main>Hello from profile page</Main>
+      <Main>
+        <ProfileCard />
+        <ProjectList />
+      </Main>
     </>
   );
 };

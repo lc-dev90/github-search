@@ -1,13 +1,13 @@
 import React from "react";
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 // Components
 import Logo from "../assets/logo-horizontal.svg";
 
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 
-const Header = () => {
+const Header = ({ match }) => {
   return (
     <HeaderContainer>
       <Link to="/">

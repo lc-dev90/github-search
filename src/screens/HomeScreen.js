@@ -1,7 +1,95 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+
+// Components
+import VerticalLogo from "../assets/logo-vertical.svg";
 
 const HomeScreen = () => {
-  return <div>Hello from Homepage</div>;
+  const [inputText, setInputText] = useState("");
+  return (
+    <Main>
+      <Container>
+        <div>
+          <img src={VerticalLogo} alt="Logo" />
+        </div>
+        <form>
+          <div>
+            <input
+              type="search"
+              placeholder="Enter user name"
+              onChange={(e) => setInputText(e.target.value)}
+            />
+          </div>
+          <Link to={`/profile/${inputText}`}>
+            <div>
+              <button type="submit" value="Search">
+                Search
+              </button>
+            </div>
+          </Link>
+        </form>
+      </Container>
+    </Main>
+  );
 };
 
 export default HomeScreen;
+
+const Main = styled.main`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #232324;
+  min-height: 100vh;
+
+  input {
+    background: transparent;
+    border: none;
+    outline: none;
+  }
+`;
+
+const Container = styled.div`
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  form {
+    width: 100%;
+    div {
+      &:nth-of-type(1) {
+        margin: 30px 0 55px;
+      }
+      input {
+        padding: 12px 0;
+        width: 100%;
+        border: none;
+        border-bottom: 4px solid;
+        border-color: #8752cc;
+        color: #8752cc;
+        caret-color: #535353;
+        font-size: 18px;
+        font-weight: 700;
+        ::placeholder {
+          color: #535353;
+          font-size: 18px;
+          text-align: center;
+        }
+      }
+      button {
+        width: 100%;
+        font-family: inherit;
+        font-weight: 700;
+        font-size: inherit;
+        background: #8752cc;
+        color: white;
+        padding: 12px 0;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+    }
+  }
+`;

@@ -6,12 +6,12 @@ import ProfileScreen from "./screens/ProfileScreen";
 
 const App = () => {
   return (
-    <div className="App">
+    <>
       <Router>
         <Route exact path="/" component={HomeScreen} />
         <Route exact path="/profile/:id" component={ProfileScreen} />
       </Router>
-    </div>
+    </>
   );
 };
 

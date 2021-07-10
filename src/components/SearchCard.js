@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { User } from "@styled-icons/boxicons-regular/User";
+import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
 
 const SearchCard = ({ avatar, username, url }) => {
   return (
@@ -10,10 +12,15 @@ const SearchCard = ({ avatar, username, url }) => {
       </div>
       <div>
         <p>
-          @User: <span>{username}</span>
+          <i>
+            <UserIcon />
+          </i>
+          <span>{username}</span>
         </p>
         <p>
-          Link:{" "}
+          <i>
+            <LinkExternalIcon />
+          </i>
           <a href={url} target="_blank" rel="noreferrer">
             {url}
           </a>
@@ -38,19 +45,25 @@ const Card = styled.div`
       height: 100px;
       border-radius: 50%;
       overflow: hidden;
-      margin-right: 20px;
+      margin-right: 40px;
     }
     &:nth-of-type(2) {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-evenly;
       p {
         font-size: 12px;
         text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        i {
+          width: 30px;
+          display: inline-block;
+          margin-right: 8px;
+        }
         span {
           text-transform: none;
           font-size: 1.5rem;
-          color: #8752cc;
         }
         a {
           text-transform: none;
@@ -59,4 +72,11 @@ const Card = styled.div`
       }
     }
   }
+`;
+
+const UserIcon = styled(User)`
+  color: #8752cc;
+`;
+const LinkExternalIcon = styled(LinkExternal)`
+  color: #8752cc;
 `;

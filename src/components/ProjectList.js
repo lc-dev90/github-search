@@ -22,7 +22,7 @@ const ProjectList = ({ repositories }) => {
 export default ProjectList;
 
 const ListProject = styled.div`
-  margin-top: 60px;
+  margin-top: 80px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 30px;

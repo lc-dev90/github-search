@@ -76,6 +76,13 @@ const Container = styled.div`
         caret-color: #535353;
         font-size: 18px;
         font-weight: 700;
+        position: relative;
+
+        &:focus {
+          border-bottom: 2px solid;
+          padding-bottom: 12px;
+          border-color: #8752cc;
+        }
         ::placeholder {
           color: #535353;
           font-size: 18px;

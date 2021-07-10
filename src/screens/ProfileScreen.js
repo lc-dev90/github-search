@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 //Components
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import ProfileCard from "../components/ProfileCard";
 import ProjectList from "../components/ProjectList";
 
@@ -49,6 +50,7 @@ const ProfileScreen = ({ match }) => {
         />
         <ProjectList repositories={repos} />
       </Main>
+      <Footer />
     </>
   );
 };
@@ -58,4 +60,5 @@ export default ProfileScreen;
 const Main = styled.main`
   max-width: 1024px;
   margin: 0 auto;
+  color: #b2b2b2;
 `;

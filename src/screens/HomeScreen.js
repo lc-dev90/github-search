@@ -23,10 +23,10 @@ const HomeScreen = () => {
               autoCorrect="off"
             />
           </div>
-          <Link to={`/profile/${inputText}`}>
+          <Link to={`/search/${inputText}`}>
             <div>
               <button type="submit" value="Search">
-                Search{" "}
+                Search
                 <span>
                   <SearchIcon />
                 </span>

@@ -3,30 +3,30 @@ import axios from "axios";
 import styled from "styled-components";
 
 //Components
-import Header from "../components/Header";
-import Footer from "../components/Footer";
 import ProfileCard from "../components/ProfileCard";
 import ProjectList from "../components/ProjectList";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const ProfileScreen = ({ match }) => {
   const [profile, setProfile] = useState({});
   const [starred, setStarred] = useState({});
   const [repos, setRepos] = useState([]);
-
+  console.log(match);
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `https://api.github.com/users/${match.params.id}`
+        `https://api.github.com/users/${match.params.user}`
       );
       setProfile(data);
 
       const starred = await axios.get(
-        `https://api.github.com/users/${match.params.id}/starred`
+        `https://api.github.com/users/${match.params.user}/starred`
       );
       setStarred(starred.data);
 
       const repos = await axios.get(
-        `https://api.github.com/users/${match.params.id}/repos`
+        `https://api.github.com/users/${match.params.user}/repos`
       );
       setRepos(repos.data);
     };
@@ -58,7 +58,8 @@ const ProfileScreen = ({ match }) => {
 export default ProfileScreen;
 
 const Main = styled.main`
-  max-width: 1024px;
+  max-width: 900px;
   margin: 0 auto;
   color: #b2b2b2;
+  min-height: calc(100vh - 246px);
 `;

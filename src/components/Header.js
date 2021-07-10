@@ -29,7 +29,7 @@ export default Header;
 
 const HeaderContainer = styled.header`
   display: flex;
-  max-width: 1024px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 42px 0;
   justify-content: space-between;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ProjectCard from "./ProjectCard";
 
-const ProjectList = ({ repositories }) => {
+const ProjectList = ({ repositories, user }) => {
   return (
     <ListProject>
       {repositories.map((item) => (
@@ -13,6 +13,7 @@ const ProjectList = ({ repositories }) => {
           stargazers_count={item.stargazers_count}
           forks_count={item.forks_count}
           language={item.language}
+          user={user}
         />
       ))}
     </ListProject>
@@ -28,3 +29,5 @@ const ListProject = styled.div`
   grid-gap: 30px;
   cursor: pointer;
 `;
+
+/* https://api.github.com/user/repos?page=2&per_page=100' */

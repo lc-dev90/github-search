@@ -68,9 +68,9 @@ const ProfileCard = ({
 export default ProfileCard;
 
 const Card = styled.div`
-  max-width: 750px;
+  max-width: 700px;
   margin: 0 auto;
-  margin-top: 30px;
+  padding-top: 30px;
   display: flex;
   align-items: center;
   justify-content: space-between;

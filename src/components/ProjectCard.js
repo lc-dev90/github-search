@@ -10,6 +10,7 @@ const ProjectCard = ({
   stargazers_count,
   forks_count,
   language,
+  user,
 }) => {
   return (
     <Card>
@@ -22,20 +23,16 @@ const ProjectCard = ({
           </div>
           <span>{stargazers_count}</span>
         </div>
-
         <div>
           <div>
             <BranchForkIcon />
           </div>
-
           <span> {forks_count}</span>
         </div>
-
         <div>
           <div>
             <FileEarmarkCodeFillIcon />
           </div>
-
           <span>{language}</span>
         </div>
       </div>

@@ -12,7 +12,7 @@ const ProfileScreen = ({ match }) => {
   const [profile, setProfile] = useState({});
   const [starred, setStarred] = useState({});
   const [repos, setRepos] = useState([]);
-  console.log(match);
+
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(

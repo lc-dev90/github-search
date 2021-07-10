@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
 // Components
@@ -7,7 +7,8 @@ import Logo from "../assets/logo-horizontal.svg";
 
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 
-const Header = ({ match }) => {
+const Header = (props) => {
+  let history = useHistory();
   return (
     <HeaderContainer>
       <Link to="/">
@@ -15,12 +16,9 @@ const Header = ({ match }) => {
           <img src={Logo} alt="Logo" />
         </div>
       </Link>
-
-      <Link to="/">
-        <div>
-          <ArrowBackIcon />
-        </div>
-      </Link>
+      <div onClick={history.goBack}>
+        <ArrowBackIcon />
+      </div>
     </HeaderContainer>
   );
 };

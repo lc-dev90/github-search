@@ -7,33 +7,35 @@ import { Info } from "@styled-icons/evaicons-solid/Info";
 
 const SearchCard = ({ avatar, username, url }) => {
   return (
-    <Card>
-      <div>
-        <img src={avatar} alt={username} />
-      </div>
-      <div>
-        <p>
-          <i>
-            <UserIcon />
-          </i>
-          <span>{username}</span>
-        </p>
-        <p>
-          <i>
-            <LinkExternalIcon />
-          </i>
-          <a href={url} target="_blank" rel="noreferrer">
-            {url}
-          </a>
-        </p>
-        <span className="information">
-          <i>
-            <InfoIcon />
-          </i>
-          <span>Click to view details</span>
-        </span>
-      </div>
-    </Card>
+    <Link to={`user/${username}`}>
+      <Card>
+        <div>
+          <img src={avatar} alt={username} />
+        </div>
+        <div>
+          <p>
+            <i>
+              <UserIcon />
+            </i>
+            <span>{username}</span>
+          </p>
+          <p>
+            <i>
+              <LinkExternalIcon />
+            </i>
+            <a href={url} target="_blank" rel="noreferrer">
+              {url}
+            </a>
+          </p>
+          <span className="information">
+            <i>
+              <InfoIcon />
+            </i>
+            <span>Click to view details</span>
+          </span>
+        </div>
+      </Card>
+    </Link>
   );
 };
 

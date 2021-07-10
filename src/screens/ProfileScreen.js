@@ -10,6 +10,7 @@ import ProjectList from "../components/ProjectList";
 const ProfileScreen = ({ match }) => {
   const [profile, setProfile] = useState({});
   const [starred, setStarred] = useState({});
+  const [repos, setRepos] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,10 +23,14 @@ const ProfileScreen = ({ match }) => {
         `https://api.github.com/users/${match.params.id}/starred`
       );
       setStarred(starred.data);
+
+      const repos = await axios.get(
+        `https://api.github.com/users/${match.params.id}/repos`
+      );
+      setRepos(repos.data);
     };
     fetchData();
   }, [match]);
-  console.log(starred);
   return (
     <>
       <Header />
@@ -38,11 +43,11 @@ const ProfileScreen = ({ match }) => {
           location={profile.location}
           company={profile.company}
           following={profile.following}
-          followers={profile.follower}
+          followers={profile.followers}
           repositories={profile.public_repos}
           starred={starred.length}
         />
-        <ProjectList />
+        <ProjectList repositories={repos} />
       </Main>
     </>
   );

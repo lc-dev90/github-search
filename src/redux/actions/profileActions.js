@@ -13,7 +13,7 @@ export const listProfiles =
       dispatch({
         type: PROFILE_LIST_REQUEST,
       });
-      const { data } = axios.get(
+      const { data } = await axios.get(
         `https://api.github.com/search/users?q=${searchTerm}&per_page=10&page=${page}`
       );
       dispatch({

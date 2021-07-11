@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "@material-ui/lab";
 import styled from "styled-components";
-import axios from "axios";
 
 //components
 import SearchCard from "../components/SearchCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchInput from "../components/SearchInput";
+import { listProfiles } from "../redux/actions/profileActions";
 
 const SearchResultsScreen = ({ location }) => {
-  const [searchResults, setSearchResults] = useState([]);
-  const [totalCount, setTotalCount] = useState(0);
+  const dispatch = useDispatch();
+  const [query, setQuery] = useState(location.search.split("=")[1]);
+  const searchResults = useSelector((state) => state.profileList);
+  const { totalCount, profiles } = searchResults;
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(listProfiles(query, page));
+  }, [query, page, dispatch]);
+
   const pages =
     Number(Math.ceil(totalCount / 10)) > 100
       ? 100
@@ -23,40 +31,13 @@ const SearchResultsScreen = ({ location }) => {
     window.scrollTo(0, 0);
   };
 
-  const query = location.search.split("=")[1];
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        `https://api.github.com/search/users?q=${query}&per_page=10`
-      );
-      setSearchResults(data.items);
-      setTotalCount(data.total_count);
-    };
-    fetchData();
-  }, [query, searchResults]);
-
-  useEffect(() => {
-    if (page) {
-      const fetchData = async () => {
-        const { data } = await axios.get(
-          `https://api.github.com/search/users?q=${query}&page=${page}&per_page=10`
-        );
-        setSearchResults(data.items);
-      };
-      fetchData();
-    }
-  }, [page, query]);
   return (
     <>
       <Header />
-      <SearchInput
-        setSearchResults={setSearchResults}
-        searchResults={searchResults}
-      />
+      <SearchInput />
       <SearchContainer>
-        {searchResults
-          ? searchResults.map((item) => (
+        {profiles
+          ? profiles.map((item) => (
               <SearchCard
                 key={item.node_id}
                 avatar={item.avatar_url}
@@ -72,6 +53,7 @@ const SearchResultsScreen = ({ location }) => {
           onChange={handleChangePagination}
         />
       </SearchContainer>
+
       <Footer />
     </>
   );

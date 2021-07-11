@@ -4,7 +4,10 @@ import {
   PROFILE_LIST_FAIL,
 } from "../constants/profileConstants";
 
-export const profileListReducer = (state = { profiles: [] }, action) => {
+export const profileListReducer = (
+  state = { profiles: [], totalCount: 0 },
+  action
+) => {
   switch (action.type) {
     case PROFILE_LIST_REQUEST:
       return {

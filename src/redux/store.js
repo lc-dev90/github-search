@@ -3,8 +3,11 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 // import reducers
+import { profileListReducer } from "./reducers/profileReducers";
 
-const reducer = combineReducers({});
+const reducer = combineReducers({
+  profileList: profileListReducer,
+});
 
 const initialState = {};
 

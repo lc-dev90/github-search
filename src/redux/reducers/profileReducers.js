@@ -14,7 +14,8 @@ export const profileListReducer = (state = { profiles: [] }, action) => {
     case PROFILE_LIST_SUCCESS:
       return {
         loading: false,
-        profiles: action.payload,
+        profiles: action.payload.data,
+        totalCount: action.payload.totalCount,
       };
     case PROFILE_LIST_FAIL:
       return {

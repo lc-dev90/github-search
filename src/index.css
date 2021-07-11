@@ -19,3 +19,9 @@ a {
 img {
   width: 100%;
 }
+.MuiPaginationItem-page.Mui-selected {
+  background-color: rebeccapurple !important;
+}
+.MuiPaginationItem-page:hover {
+  background-color: rgba(0, 0, 0, 0.623) !important;
+}

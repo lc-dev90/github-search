@@ -19,6 +19,7 @@ const SearchResultsScreen = ({ location }) => {
 
   const handleChangePagination = (e, v) => {
     setPage(v);
+    window.scrollTo(0, 0);
   };
 
   const query = location.search.split("=")[1];
@@ -59,11 +60,6 @@ const SearchResultsScreen = ({ location }) => {
               />
             ))
           : "Loading..."}
-        {/* <div>
-          {Array.from(Array(pages).keys()).map((item) => (
-            <span style={{ marginRight: "4px" }}>{item + 1}</span>
-          ))}
-        </div> */}
         <Pagination
           style={{ marginTop: "20px" }}
           count={pages}

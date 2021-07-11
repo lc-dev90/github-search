@@ -31,7 +31,7 @@ const SearchCard = ({ avatar, username, url }) => {
             <i>
               <InfoIcon />
             </i>
-            <span>Click to view details</span>
+            <span>Details</span>
           </span>
         </div>
       </Card>
@@ -90,10 +90,13 @@ const Card = styled.div`
         border-bottom-right-radius: 10px;
         opacity: 0;
         transition: opacity ease-in-out 0.25s;
+        box-shadow: 0px 0px 7px -1px rgb(0 0 0 / 49%),
+          0px 0px 7px -2px rgb(0 0 0 / 49%);
         span {
-          font-size: 10px;
+          font-size: 8px;
           color: white;
           margin-top: 8px;
+          text-transform: uppercase;
         }
         i {
           width: 30px;

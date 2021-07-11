@@ -7,6 +7,7 @@ import axios from "axios";
 import SearchCard from "../components/SearchCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import SearchInput from "../components/SearchInput";
 
 const SearchResultsScreen = ({ location }) => {
   const [searchResults, setSearchResults] = useState([]);
@@ -49,6 +50,7 @@ const SearchResultsScreen = ({ location }) => {
   return (
     <>
       <Header />
+      <SearchInput />
       <SearchContainer>
         {searchResults
           ? searchResults.map((item) => (

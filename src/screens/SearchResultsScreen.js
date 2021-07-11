@@ -34,7 +34,7 @@ const SearchResultsScreen = ({ location }) => {
       setTotalCount(data.total_count);
     };
     fetchData();
-  }, [query]);
+  }, [query, searchResults]);
 
   useEffect(() => {
     if (page) {
@@ -50,7 +50,10 @@ const SearchResultsScreen = ({ location }) => {
   return (
     <>
       <Header />
-      <SearchInput />
+      <SearchInput
+        setSearchResults={setSearchResults}
+        searchResults={searchResults}
+      />
       <SearchContainer>
         {searchResults
           ? searchResults.map((item) => (

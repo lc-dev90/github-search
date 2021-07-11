@@ -1,12 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
 
 const SearchInput = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setSearchTerm(e.target.value);
+  };
   return (
     <SearchInputContainer>
-      <form>
+      <form onSubmit={submitHandler} action={`/search?q=${searchTerm}`}>
         <div>
           <input type="text" placeholder="Search..." autoCorrect="off" />
           <button type="submit">
@@ -25,7 +29,8 @@ export default SearchInput;
 const SearchInputContainer = styled.div`
   width: 600px;
   margin: 0 auto;
-  padding: 30px 0;
+  padding: 20px 0 60px;
+
   form {
     div {
       position: relative;

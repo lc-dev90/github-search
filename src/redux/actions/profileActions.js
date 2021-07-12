@@ -4,12 +4,16 @@ import {
   PROFILE_LIST_REQUEST,
   PROFILE_LIST_SUCCESS,
   PROFILE_LIST_FAIL,
+  CLEAN_PROFILE_LIST,
 } from "../constants/profileConstants";
 
 export const listProfiles =
   (searchTerm, page = 1) =>
   async (dispatch) => {
     try {
+      dispatch({
+        type: CLEAN_PROFILE_LIST,
+      });
       dispatch({
         type: PROFILE_LIST_REQUEST,
       });

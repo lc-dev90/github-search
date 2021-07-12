@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Pagination, PaginationItem } from "@material-ui/lab";
+import { Pagination } from "@material-ui/lab";
 import styled from "styled-components";
 
 //components
@@ -17,6 +16,11 @@ const SearchResultsScreen = ({ location }) => {
   const searchResults = useSelector((state) => state.profileList);
   const { totalCount, profiles } = searchResults;
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    setPage(1);
+    setQuery(location.search.split("=")[1]);
+  }, [location]);
 
   useEffect(() => {
     setQuery(location.search.split("=")[1]);
@@ -55,19 +59,12 @@ const SearchResultsScreen = ({ location }) => {
             <>
               <Pagination
                 style={{ marginTop: "20px" }}
-                count={100}
+                count={pages}
                 className="pagination"
                 onChange={handleChangePagination}
-                /* renderItem={(item) => (
-                  <PaginationItem
-                    component={Link}
-                    to={`/search?q=${query}${
-                      item.page === 1 ? "" : `?page=${item.page}`
-                    }`}
-                    {...item}
-                  />
-                )} */
-              ></Pagination>
+                page={page}
+                defaultPage={page}
+              />
             </>
           )
         ) : (

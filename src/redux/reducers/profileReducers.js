@@ -13,6 +13,7 @@ export const profileListReducer = (
     case CLEAN_PROFILE_LIST:
       return {
         profiles: [],
+        totalCount: 0,
         ...state,
       };
     case PROFILE_LIST_REQUEST:

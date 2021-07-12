@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
@@ -23,9 +23,13 @@ const SearchCard = ({ avatar, username, url }) => {
             <i>
               <LinkExternalIcon />
             </i>
-            <a href={url} target="_blank" rel="noreferrer">
+            <Link
+              to={{ pathname: url }}
+              target="_blank"
+              onClick={(e) => e.stopPropagation()}
+            >
               {url}
-            </a>
+            </Link>
           </p>
           <span className="information">
             <i>

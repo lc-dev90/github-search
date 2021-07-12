@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
-import { listProfiles } from "../redux/actions/profileActions";
 
-const SearchInput = ({ query }) => {
-  const dispatch = useDispatch();
+const SearchInput = ({ query, setQuery }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
-    dispatch(listProfiles(searchTerm, 1));
+    setQuery(searchTerm);
+    /*   dispatch(listProfiles(searchTerm, 1)); */
   };
 
   return (

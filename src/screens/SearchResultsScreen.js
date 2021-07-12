@@ -20,12 +20,14 @@ const SearchResultsScreen = ({ location }) => {
   useEffect(() => {
     setPage(1);
     setQuery(location.search.split("=")[1]);
-  }, [location]);
+  }, [location.search]);
 
   useEffect(() => {
-    setQuery(location.search.split("=")[1]);
-    dispatch(listProfiles(query, page));
-  }, [page, dispatch, query, location]);
+    if (query) {
+      setQuery(location.search.split("=")[1]);
+      dispatch(listProfiles(query, page));
+    }
+  }, [page, dispatch, query]);
 
   const pages =
     Number(Math.ceil(totalCount / 10)) > 100
@@ -40,7 +42,7 @@ const SearchResultsScreen = ({ location }) => {
   return (
     <>
       <Header />
-      <SearchInput query={query} />
+      <SearchInput query={query} setQuery={setQuery} />
       <SearchContainer>
         {profiles
           ? profiles.map((item) => (

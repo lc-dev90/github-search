@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { Pagination } from "@material-ui/lab";
+import { Pagination, PaginationItem } from "@material-ui/lab";
 import styled from "styled-components";
 
 //components
@@ -12,14 +13,15 @@ import { listProfiles } from "../redux/actions/profileActions";
 
 const SearchResultsScreen = ({ location }) => {
   const dispatch = useDispatch();
-  const [query, setQuery] = useState(location.search.split("=")[1]);
+  const [query, setQuery] = useState("");
   const searchResults = useSelector((state) => state.profileList);
   const { totalCount, profiles } = searchResults;
   const [page, setPage] = useState(1);
 
   useEffect(() => {
+    setQuery(location.search.split("=")[1]);
     dispatch(listProfiles(query, page));
-  }, [query, page, dispatch]);
+  }, [page, dispatch, query, location]);
 
   const pages =
     Number(Math.ceil(totalCount / 10)) > 100
@@ -34,7 +36,7 @@ const SearchResultsScreen = ({ location }) => {
   return (
     <>
       <Header />
-      <SearchInput />
+      <SearchInput query={query} />
       <SearchContainer>
         {profiles
           ? profiles.map((item) => (
@@ -46,12 +48,31 @@ const SearchResultsScreen = ({ location }) => {
               />
             ))
           : "Loading..."}
-        <Pagination
-          style={{ marginTop: "20px" }}
-          count={pages}
-          className="pagination"
-          onChange={handleChangePagination}
-        />
+        {profiles ? (
+          profiles.length === 0 ? (
+            <p style={{ textAlign: "left" }}>Sorry, no results..</p>
+          ) : (
+            <>
+              <Pagination
+                style={{ marginTop: "20px" }}
+                count={100}
+                className="pagination"
+                onChange={handleChangePagination}
+                /* renderItem={(item) => (
+                  <PaginationItem
+                    component={Link}
+                    to={`/search?q=${query}${
+                      item.page === 1 ? "" : `?page=${item.page}`
+                    }`}
+                    {...item}
+                  />
+                )} */
+              ></Pagination>
+            </>
+          )
+        ) : (
+          ""
+        )}
       </SearchContainer>
 
       <Footer />
@@ -62,14 +83,18 @@ const SearchResultsScreen = ({ location }) => {
 export default SearchResultsScreen;
 
 const SearchContainer = styled.main`
-  max-width: 900px;
+  max-width: 600px;
   margin: 0 auto;
   color: #b2b2b2;
-  min-height: calc(100vh - 246px);
+  min-height: calc(100vh - 378px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  p {
+    display: block;
+    width: 100%;
+  }
   .pagination {
     ul {
       li {

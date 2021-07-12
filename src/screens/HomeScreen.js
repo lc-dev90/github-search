@@ -21,18 +21,19 @@ const HomeScreen = () => {
               placeholder="Enter user name"
               onChange={(e) => setInputText(e.target.value)}
               autoCorrect="off"
+              value={inputText}
             />
           </div>
-          <Link to={`/search?q=${inputText}`}>
-            <div>
+          <div>
+            <Link to={`/search?q=${inputText}`}>
               <button type="submit" value="Search">
                 Search
                 <span>
                   <SearchIcon />
                 </span>
               </button>
-            </div>
-          </Link>
+            </Link>
+          </div>
         </form>
       </Container>
     </Main>

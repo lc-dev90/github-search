@@ -2,6 +2,7 @@ import {
   PROFILE_LIST_REQUEST,
   PROFILE_LIST_SUCCESS,
   PROFILE_LIST_FAIL,
+  CLEAN_PROFILE_LIST,
 } from "../constants/profileConstants";
 
 export const profileListReducer = (
@@ -9,6 +10,11 @@ export const profileListReducer = (
   action
 ) => {
   switch (action.type) {
+    case CLEAN_PROFILE_LIST:
+      return {
+        profiles: [],
+        ...state,
+      };
     case PROFILE_LIST_REQUEST:
       return {
         loading: true,

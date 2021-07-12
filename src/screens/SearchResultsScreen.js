@@ -32,7 +32,7 @@ const SearchResultsScreen = ({ location }) => {
   const pages =
     Number(Math.ceil(totalCount / 10)) > 100
       ? 100
-      : Number(Math.ceil(totalCount / 10)) > 100;
+      : Number(Math.ceil(totalCount / 10));
 
   const handleChangePagination = (e, v) => {
     setPage(v);

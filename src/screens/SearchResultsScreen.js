@@ -8,14 +8,21 @@ import SearchCard from "../components/SearchCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchInput from "../components/SearchInput";
-import { listProfiles } from "../redux/actions/profileActions";
+import {
+  listProfiles,
+  clearListProfiles,
+} from "../redux/actions/profileActions";
 
 const SearchResultsScreen = ({ location }) => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const searchResults = useSelector((state) => state.profileList);
-  const { totalCount, profiles } = searchResults;
+  const { totalCount, profiles, loading } = searchResults;
   const [page, setPage] = useState(1);
+
+  useEffect(() => {
+    dispatch(clearListProfiles());
+  }, []);
 
   useEffect(() => {
     setPage(1);
@@ -44,16 +51,20 @@ const SearchResultsScreen = ({ location }) => {
       <Header />
       <SearchInput query={query} setQuery={setQuery} />
       <SearchContainer>
-        {profiles
-          ? profiles.map((item) => (
-              <SearchCard
-                key={item.node_id}
-                avatar={item.avatar_url}
-                username={item.login}
-                url={item.html_url}
-              />
-            ))
-          : "Loading..."}
+        {loading ? (
+          <h2>LOADING.....</h2>
+        ) : profiles ? (
+          profiles.map((item) => (
+            <SearchCard
+              key={item.node_id}
+              avatar={item.avatar_url}
+              username={item.login}
+              url={item.html_url}
+            />
+          ))
+        ) : (
+          ""
+        )}
         {profiles ? (
           profiles.length === 0 ? (
             <p style={{ textAlign: "left" }}>Sorry, no results..</p>

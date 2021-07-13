@@ -7,19 +7,23 @@ import {
   CLEAN_PROFILE_LIST,
 } from "../constants/profileConstants";
 
+export const clearListProfiles = () => (dispatch) => {
+  dispatch({
+    type: CLEAN_PROFILE_LIST,
+  });
+};
+
 export const listProfiles =
   (searchTerm, page = 1) =>
   async (dispatch) => {
     try {
-      dispatch({
-        type: CLEAN_PROFILE_LIST,
-      });
       dispatch({
         type: PROFILE_LIST_REQUEST,
       });
       const { data } = await axios.get(
         `https://api.github.com/search/users?q=${searchTerm}&per_page=10&page=${page}`
       );
+
       dispatch({
         type: PROFILE_LIST_SUCCESS,
         payload: {

@@ -7,39 +7,40 @@ import { Info } from "@styled-icons/evaicons-solid/Info";
 
 const SearchCard = ({ avatar, username, url }) => {
   return (
-    <Link to={`user/${username}`}>
-      <Card>
-        <div>
-          <img src={avatar} alt={username} />
-        </div>
-        <div>
-          <p>
-            <i>
-              <UserIcon />
-            </i>
-            <span>{username}</span>
-          </p>
-          <p>
-            <i>
-              <LinkExternalIcon />
-            </i>
-            <Link
-              to={{ pathname: url }}
-              target="_blank"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {url}
-            </Link>
-          </p>
+    <Card>
+      <div>
+        <img src={avatar} alt={username} />
+      </div>
+      <div>
+        <p>
+          <i>
+            <UserIcon />
+          </i>
+          <span>{username}</span>
+        </p>
+        <p>
+          <i>
+            <LinkExternalIcon />
+          </i>
+          <Link
+            to={{ pathname: url }}
+            target="_blank"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {url}
+          </Link>
+        </p>
+        <Link to={`user/${username}`}>
           <span className="information">
             <i>
               <InfoIcon />
             </i>
+
             <span>Details</span>
           </span>
-        </div>
-      </Card>
-    </Link>
+        </Link>
+      </div>
+    </Card>
   );
 };
 
@@ -53,7 +54,6 @@ const Card = styled.div`
   border-radius: 10px;
   padding: 30px;
   width: 600px;
-  cursor: pointer;
   box-shadow: 0px 3px 17px -3px rgba(0, 0, 0, 0.49),
     0px 3px 17px -2px rgba(0, 0, 0, 0.49);
   &:hover {
@@ -80,11 +80,14 @@ const Card = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+      a {
+      }
       .information {
         position: absolute;
         height: 100%;
         z-index: 1;
         right: 0px;
+        top: 0;
         display: flex;
         flex-direction: column;
         align-items: center;

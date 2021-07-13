@@ -1,20 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
+import { clearListProfiles } from "../redux/actions/profileActions";
 
 // Components
 import VerticalLogo from "../assets/logo-vertical.svg";
 
 const HomeScreen = () => {
+  const dispatch = useDispatch();
+  const searchResults = useSelector((state) => state.profileList);
+
+  useEffect(() => {
+    dispatch(clearListProfiles());
+  }, []);
+
   const [inputText, setInputText] = useState("");
+  const submitHandler = (e) => {
+    dispatch(clearListProfiles());
+  };
   return (
     <Main>
       <Container>
         <div>
           <img src={VerticalLogo} alt="Logo" />
         </div>
-        <form>
+        <form onSubmit={submitHandler}>
           <div>
             <input
               type="text"
@@ -25,7 +37,7 @@ const HomeScreen = () => {
             />
           </div>
           <div>
-            <Link to={`/search?q=${inputText}`}>
+            <Link to={`/search?q=${inputText}`} onClick={submitHandler}>
               <button type="submit" value="Search">
                 Search
                 <span>

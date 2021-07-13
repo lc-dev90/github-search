@@ -6,7 +6,7 @@ import {
 } from "../constants/profileConstants";
 
 export const profileListReducer = (
-  state = { profiles: [], totalCount: 0 },
+  state = { profiles: [], totalCount: 0, loading: true },
   action
 ) => {
   switch (action.type) {
@@ -14,7 +14,7 @@ export const profileListReducer = (
       return {
         profiles: [],
         totalCount: 0,
-        ...state,
+        loading: true,
       };
     case PROFILE_LIST_REQUEST:
       return {

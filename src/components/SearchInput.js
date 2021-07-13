@@ -1,15 +1,20 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
+import { clearListProfiles } from "../redux/actions/profileActions";
 
-const SearchInput = ({ query, setQuery }) => {
+const SearchInput = ({ query, setQuery, match }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  let history = useHistory();
+  const dispatch = useDispatch();
   const submitHandler = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
+    dispatch(clearListProfiles());
     setQuery(searchTerm);
-    /*   dispatch(listProfiles(searchTerm, 1)); */
+    history.push(`/search?q=${searchTerm}`);
   };
 
   return (
@@ -21,15 +26,13 @@ const SearchInput = ({ query, setQuery }) => {
             placeholder="Search..."
             autoCorrect="off"
             onChange={(e) => setSearchTerm(e.target.value)}
-            value={searchTerm}
           />
-          <Link to={`/search?q=${searchTerm}`}>
-            <button type="submit">
-              <div>
-                <SearchIcon />
-              </div>
-            </button>
-          </Link>
+
+          <button type="submit">
+            <div>
+              <SearchIcon />
+            </div>
+          </button>
         </div>
       </form>
     </SearchInputContainer>

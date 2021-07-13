@@ -9,9 +9,42 @@ import {
   PROFILE_DETAILS_REQUEST,
   PROFILE_DETAILS_SUCCESS,
   PROFILE_DETAILS_FAIL,
+  GET_MORE_PROJECTS_FAIL,
+  GET_MORE_PROJECTS_SUCCESS,
+  GET_MORE_PROJECTS_REQUEST,
 } from "../constants/profileConstants";
 
 const api = "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";
+
+export const getMoreProjectsFromProfile = (user, page) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_MORE_PROJECTS_REQUEST,
+    });
+    const options = {
+      headers: {
+        Authorization: api,
+      },
+    };
+    const repos = await axios.get(
+      `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`,
+      options
+    );
+    console.log(repos.data);
+    dispatch({
+      type: GET_MORE_PROJECTS_SUCCESS,
+      payload: repos.data,
+    });
+  } catch (error) {
+    dispatch({
+      type: GET_MORE_PROJECTS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const getProfileDetails =
   (user, page = 1) =>

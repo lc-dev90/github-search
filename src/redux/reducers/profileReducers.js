@@ -13,24 +13,30 @@ import {
 } from "../constants/profileConstants";
 
 export const profileDetailsReducer = (
-  state = { profile: {}, starred: [], repos: [], loading: true },
+  state = {
+    profile: {},
+    starred: [],
+    repos: [],
+    loading: true,
+    loading_projects: true,
+  },
   action
 ) => {
   switch (action.type) {
     case GET_MORE_PROJECTS_REQUEST:
       return {
-        loading: true,
         ...state,
+        loading_projects: true,
       };
     case GET_MORE_PROJECTS_SUCCESS:
       return {
-        loading: false,
-        repos: action.payload,
         ...state,
+        loading_projects: false,
+        repos: action.payload,
       };
     case GET_MORE_PROJECTS_FAIL:
       return {
-        loading: false,
+        loading_projects: false,
         profile: {},
         starred: [],
         repos: [],

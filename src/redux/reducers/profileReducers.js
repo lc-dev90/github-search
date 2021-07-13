@@ -10,7 +10,7 @@ import {
 } from "../constants/profileConstants";
 
 export const profileDetailsReducer = (
-  state = { profile: {}, loading: true },
+  state = { profile: {}, starred: [], repos: [], loading: true },
   action
 ) => {
   switch (action.type) {
@@ -18,6 +18,8 @@ export const profileDetailsReducer = (
       return {
         loading: true,
         profile: {},
+        starred: [],
+        repos: [],
       };
     case PROFILE_DETAILS_REQUEST:
       return {
@@ -27,12 +29,16 @@ export const profileDetailsReducer = (
     case PROFILE_DETAILS_SUCCESS:
       return {
         loading: false,
-        profile: action.payload,
+        profile: action.payload.profile,
+        starred: action.payload.starred,
+        repos: action.payload.repos,
       };
     case PROFILE_DETAILS_FAIL:
       return {
         loading: false,
         profile: {},
+        starred: [],
+        repos: [],
         error: action.payload,
       };
     default:

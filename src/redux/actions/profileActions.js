@@ -11,7 +11,7 @@ import {
   PROFILE_DETAILS_FAIL,
 } from "../constants/profileConstants";
 
-export const getProfileDetails = (profile) => async (dispatch) => {
+export const getProfileDetails = (user) => async (dispatch) => {
   try {
     dispatch({
       type: CLEAN_PROFILE_DETAILS,
@@ -19,10 +19,19 @@ export const getProfileDetails = (profile) => async (dispatch) => {
     dispatch({
       type: PROFILE_DETAILS_REQUEST,
     });
-    const data = axios.get(`https://api.github.com/users/${profile}`);
+    const profile = await axios.get(`https://api.github.com/users/${user}`);
+
+    const starred = await axios.get(
+      `https://api.github.com/users/${user}/starred`
+    );
+    const repos = await axios.get(`https://api.github.com/users/${user}/repos`);
     dispatch({
       type: PROFILE_DETAILS_SUCCESS,
-      payload: data,
+      payload: {
+        profile: profile.data,
+        starred: starred.data,
+        repos: repos.data,
+      },
     });
   } catch (error) {
     dispatch({

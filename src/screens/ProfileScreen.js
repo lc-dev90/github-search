@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+
+import { getProfileDetails } from "../redux/actions/profileActions";
 
 //Components
 import ProfileCard from "../components/ProfileCard";
@@ -9,47 +11,34 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const ProfileScreen = ({ match }) => {
-  const [profile, setProfile] = useState({});
-  const [starred, setStarred] = useState({});
-  const [repos, setRepos] = useState([]);
+  const dispatch = useDispatch();
+  const profileDetails = useSelector((state) => state.profileDetails);
+  const { profile, starred, repos, loading } = profileDetails;
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get(
-        `https://api.github.com/users/${match.params.user}`
-      );
-      setProfile(data);
+    dispatch(getProfileDetails(match.params.user));
+  }, []);
 
-      const starred = await axios.get(
-        `https://api.github.com/users/${match.params.user}/starred`
-      );
-      setStarred(starred.data);
-
-      const repos = await axios.get(
-        `https://api.github.com/users/${match.params.user}/repos`
-      );
-      setRepos(repos.data);
-    };
-    fetchData();
-  }, [match]);
   return (
     <>
       <Header />
-      <Main>
-        <ProfileCard
-          avatar={profile.avatar_url}
-          name={profile.name}
-          user={profile.login}
-          twitter={profile.twitter_username}
-          location={profile.location}
-          company={profile.company}
-          following={profile.following}
-          followers={profile.followers}
-          repositories={profile.public_repos}
-          starred={starred.length}
-        />
-        <ProjectList repositories={repos} />
-      </Main>
+      {
+        <Main>
+          <ProfileCard
+            avatar={profile.avatar_url}
+            name={profile.name}
+            user={profile.login}
+            twitter={profile.twitter_username}
+            location={profile.location}
+            company={profile.company}
+            following={profile.following}
+            followers={profile.followers}
+            repositories={profile.public_repos}
+            starred={starred.length}
+          />
+          <ProjectList repositories={repos} />
+        </Main>
+      }
       <Footer />
     </>
   );

@@ -50,9 +50,6 @@ export const getProfileDetails =
   (user, page = 1) =>
   async (dispatch) => {
     try {
-      /*       dispatch({
-        type: CLEAN_PROFILE_DETAILS,
-      }); */
       dispatch({
         type: PROFILE_DETAILS_REQUEST,
       });
@@ -99,9 +96,9 @@ export const listProfiles =
   (searchTerm, page = 1) =>
   async (dispatch) => {
     try {
-      dispatch({
+      /*  dispatch({
         type: CLEAN_PROFILE_LIST,
-      });
+      }); */
       dispatch({
         type: PROFILE_LIST_REQUEST,
       });

@@ -51,8 +51,10 @@ export const profileDetailsReducer = (
       };
     case PROFILE_DETAILS_REQUEST:
       return {
+        profile: {},
+        starred: [],
+        repos: [],
         loading: true,
-        ...state,
       };
     case PROFILE_DETAILS_SUCCESS:
       return {

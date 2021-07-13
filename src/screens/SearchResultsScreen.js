@@ -24,11 +24,11 @@ const SearchResultsScreen = ({ location }) => {
   }, [location.search]);
 
   useEffect(() => {
-    if (query) {
+    if (query && query !== previousSearchTerm) {
       setQuery(location.search.split("=")[1]);
       dispatch(listProfiles(query, page));
     }
-  }, [page, dispatch, query]);
+  }, [query]);
 
   const pages =
     Number(Math.ceil(totalCount / 10)) > 100
@@ -37,6 +37,7 @@ const SearchResultsScreen = ({ location }) => {
 
   const handleChangePagination = (e, v) => {
     setPage(v);
+    dispatch(listProfiles(query, v));
     window.scrollTo(0, 0);
   };
 

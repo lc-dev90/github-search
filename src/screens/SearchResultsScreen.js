@@ -46,7 +46,7 @@ const SearchResultsScreen = ({ location }) => {
       <SearchContainer>
         {loading ? (
           <h2>LOADING.....</h2>
-        ) : profiles ? (
+        ) : profiles.length !== 0 ? (
           profiles.map((item) => (
             <SearchCard
               key={item.node_id}
@@ -56,28 +56,21 @@ const SearchResultsScreen = ({ location }) => {
             />
           ))
         ) : (
-          ""
+          <p>Sorry, no results.</p>
         )}
-        {profiles ? (
-          profiles.length === 0 ? (
-            <p style={{ textAlign: "left" }}>Sorry, no results..</p>
-          ) : (
-            <>
-              <Pagination
-                style={{ marginTop: "20px" }}
-                count={pages}
-                className="pagination"
-                onChange={handleChangePagination}
-                page={page}
-                defaultPage={page}
-              />
-            </>
-          )
+        {profiles.length !== 0 ? (
+          <Pagination
+            style={{ marginTop: "20px" }}
+            count={pages}
+            className="pagination"
+            onChange={handleChangePagination}
+            page={page}
+            defaultPage={page}
+          />
         ) : (
           ""
         )}
       </SearchContainer>
-
       <Footer />
     </>
   );

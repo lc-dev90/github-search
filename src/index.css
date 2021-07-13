@@ -25,3 +25,18 @@ img {
 .MuiPaginationItem-page:hover {
   background-color: rgba(0, 0, 0, 0.623) !important;
 }
+
+.pagination {
+  margin-top: 50px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination ul li div {
+  color: white;
+}
+.pagination ul li button {
+  color: white;
+}

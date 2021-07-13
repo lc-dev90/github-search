@@ -48,7 +48,6 @@ export default ProjectCard;
 const Card = styled.div`
   background: #201f1f;
   min-height: 170px;
-  width: 282px;
   border-radius: 10px;
   padding: 20px 24px;
   display: flex;

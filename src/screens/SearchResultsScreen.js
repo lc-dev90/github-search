@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Pagination } from "@material-ui/lab";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import styled from "styled-components";
 
 //components
@@ -45,7 +46,9 @@ const SearchResultsScreen = ({ location }) => {
       <SearchInput query={query} setQuery={setQuery} />
       <SearchContainer>
         {loading ? (
-          <h2>LOADING.....</h2>
+          <div style={{ padding: "30px" }}>
+            <CircularProgress size={100} />
+          </div>
         ) : profiles.length !== 0 ? (
           profiles.map((item) => (
             <SearchCard

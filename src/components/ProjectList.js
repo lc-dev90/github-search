@@ -4,10 +4,12 @@ import styled from "styled-components";
 import ProjectCard from "./ProjectCard";
 
 const ProjectList = ({ repositories, user }) => {
+  console.log(repositories);
   return (
     <ListProject>
       {repositories.map((item) => (
         <ProjectCard
+          key={item.id}
           name={item.name}
           description={item.description}
           stargazers_count={item.stargazers_count}

@@ -11,38 +11,42 @@ import {
   PROFILE_DETAILS_FAIL,
 } from "../constants/profileConstants";
 
-export const getProfileDetails = (user) => async (dispatch) => {
-  try {
-    dispatch({
-      type: CLEAN_PROFILE_DETAILS,
-    });
-    dispatch({
-      type: PROFILE_DETAILS_REQUEST,
-    });
-    const profile = await axios.get(`https://api.github.com/users/${user}`);
+export const getProfileDetails =
+  (user, page = 1) =>
+  async (dispatch) => {
+    try {
+      dispatch({
+        type: CLEAN_PROFILE_DETAILS,
+      });
+      dispatch({
+        type: PROFILE_DETAILS_REQUEST,
+      });
+      const profile = await axios.get(`https://api.github.com/users/${user}`);
 
-    const starred = await axios.get(
-      `https://api.github.com/users/${user}/starred`
-    );
-    const repos = await axios.get(`https://api.github.com/users/${user}/repos`);
-    dispatch({
-      type: PROFILE_DETAILS_SUCCESS,
-      payload: {
-        profile: profile.data,
-        starred: starred.data,
-        repos: repos.data,
-      },
-    });
-  } catch (error) {
-    dispatch({
-      type: PROFILE_DETAILS_FAIL,
-      payload:
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message,
-    });
-  }
-};
+      const starred = await axios.get(
+        `https://api.github.com/users/${user}/starred`
+      );
+      const repos = await axios.get(
+        `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`
+      );
+      dispatch({
+        type: PROFILE_DETAILS_SUCCESS,
+        payload: {
+          profile: profile.data,
+          starred: starred.data,
+          repos: repos.data,
+        },
+      });
+    } catch (error) {
+      dispatch({
+        type: PROFILE_DETAILS_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const clearListProfiles = () => (dispatch) => {
   dispatch({

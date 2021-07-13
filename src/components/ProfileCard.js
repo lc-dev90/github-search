@@ -29,16 +29,25 @@ const ProfileCard = ({
         <h2 style={{ color: "#8752cc", fontSize: "1.6rem" }}>
           {name ? name : user}
         </h2>
-        <span>@{twitter ? twitter : "not aplicable"}</span>
+        <span>@{twitter ? twitter : user}</span>
         <div className="card-location">
-          <div>
-            <LocalIcon />
-            {location}
-          </div>
-          <div>
-            <CompanyIcon />
-            {company}
-          </div>
+          {location ? (
+            <div>
+              <LocalIcon />
+              <span>{location}</span>
+            </div>
+          ) : (
+            ""
+          )}
+
+          {company ? (
+            <div>
+              <CompanyIcon />
+              <span>{company} </span>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div className="card-follow-information">
           <div>

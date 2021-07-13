@@ -9,6 +9,7 @@ import ProfileCard from "../components/ProfileCard";
 import ProjectList from "../components/ProjectList";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const ProfileScreen = ({ match }) => {
   const dispatch = useDispatch();
@@ -22,23 +23,36 @@ const ProfileScreen = ({ match }) => {
   return (
     <>
       <Header />
-      {
-        <Main>
-          <ProfileCard
-            avatar={profile.avatar_url}
-            name={profile.name}
-            user={profile.login}
-            twitter={profile.twitter_username}
-            location={profile.location}
-            company={profile.company}
-            following={profile.following}
-            followers={profile.followers}
-            repositories={profile.public_repos}
-            starred={starred.length}
-          />
-          <ProjectList repositories={repos} />
-        </Main>
-      }
+      <Main>
+        {loading ? (
+          <div
+            style={{
+              padding: "30px",
+              textAlign: "center",
+              paddingTop: "80px",
+            }}
+          >
+            <CircularProgress size={100} />
+          </div>
+        ) : (
+          <>
+            <ProfileCard
+              avatar={profile.avatar_url}
+              name={profile.name}
+              user={profile.login}
+              twitter={profile.twitter_username}
+              location={profile.location}
+              company={profile.company}
+              following={profile.following}
+              followers={profile.followers}
+              repositories={profile.public_repos}
+              starred={starred.length}
+            />
+            <ProjectList repositories={repos} />
+          </>
+        )}
+      </Main>
+
       <Footer />
     </>
   );

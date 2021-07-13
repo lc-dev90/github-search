@@ -37,7 +37,7 @@ export const getProfileDetails =
         `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`,
         options
       );
-      console.log(repos);
+
       dispatch({
         type: PROFILE_DETAILS_SUCCESS,
         payload: {

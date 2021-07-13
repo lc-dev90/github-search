@@ -39,7 +39,6 @@ const ProfileScreen = ({ match }) => {
             <ProfileCard
               avatar={profile.avatar_url}
               name={profile.name}
-              user={profile.login}
               twitter={profile.twitter_username}
               location={profile.location}
               company={profile.company}
@@ -48,7 +47,7 @@ const ProfileScreen = ({ match }) => {
               repositories={profile.public_repos}
               starred={starred.length}
             />
-            <ProjectList repositories={repos} />
+            <ProjectList repositories={repos} user={profile.login} />
           </>
         )}
       </Main>

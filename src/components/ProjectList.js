@@ -4,7 +4,6 @@ import styled from "styled-components";
 import ProjectCard from "./ProjectCard";
 
 const ProjectList = ({ repositories, user }) => {
-  console.log(repositories);
   return (
     <ListProject>
       {repositories.map((item) => (

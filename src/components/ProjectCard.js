@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { BranchFork } from "@styled-icons/fluentui-system-regular";
 import { StarFill } from "@styled-icons/bootstrap/StarFill";
@@ -13,30 +14,32 @@ const ProjectCard = ({
   user,
 }) => {
   return (
-    <Card>
-      <h4>{name}</h4>
-      <p>{description ? description : "No description"}</p>
-      <div>
+    <Link to={`/${user}/${name}`}>
+      <Card>
+        <h4>{name}</h4>
+        <p>{description ? description : "No description"}</p>
         <div>
           <div>
-            <StarFillIcon />
+            <div>
+              <StarFillIcon />
+            </div>
+            <span>{stargazers_count}</span>
           </div>
-          <span>{stargazers_count}</span>
-        </div>
-        <div>
           <div>
-            <BranchForkIcon />
+            <div>
+              <BranchForkIcon />
+            </div>
+            <span> {forks_count}</span>
           </div>
-          <span> {forks_count}</span>
-        </div>
-        <div>
           <div>
-            <FileEarmarkCodeFillIcon />
+            <div>
+              <FileEarmarkCodeFillIcon />
+            </div>
+            <span>{language}</span>
           </div>
-          <span>{language}</span>
         </div>
-      </div>
-    </Card>
+      </Card>
+    </Link>
   );
 };
 

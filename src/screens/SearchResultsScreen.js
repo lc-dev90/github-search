@@ -66,14 +66,18 @@ const SearchResultsScreen = ({ location }) => {
           <p>Sorry, no results.</p>
         )}
         {profiles ? (
-          <Pagination
-            style={{ marginTop: "20px" }}
-            count={pages}
-            className="pagination"
-            onChange={handleChangePagination}
-            page={page}
-            defaultPage={page}
-          />
+          profiles.length !== 0 ? (
+            <Pagination
+              style={{ marginTop: "20px" }}
+              count={pages}
+              className="pagination"
+              onChange={handleChangePagination}
+              page={page}
+              defaultPage={page}
+            />
+          ) : (
+            ""
+          )
         ) : (
           ""
         )}

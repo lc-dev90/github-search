@@ -12,10 +12,6 @@ const HomeScreen = () => {
   const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(clearListProfiles());
-  }, []);
-
   const changeHandler = (e) => {
     setInputText(e.target.value);
   };

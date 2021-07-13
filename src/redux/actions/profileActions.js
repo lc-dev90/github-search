@@ -18,6 +18,9 @@ export const listProfiles =
   async (dispatch) => {
     try {
       dispatch({
+        type: CLEAN_PROFILE_LIST,
+      });
+      dispatch({
         type: PROFILE_LIST_REQUEST,
       });
       const { data } = await axios.get(

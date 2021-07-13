@@ -8,10 +8,7 @@ import SearchCard from "../components/SearchCard";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import SearchInput from "../components/SearchInput";
-import {
-  listProfiles,
-  clearListProfiles,
-} from "../redux/actions/profileActions";
+import { listProfiles } from "../redux/actions/profileActions";
 
 const SearchResultsScreen = ({ location }) => {
   const dispatch = useDispatch();
@@ -19,10 +16,6 @@ const SearchResultsScreen = ({ location }) => {
   const searchResults = useSelector((state) => state.profileList);
   const { totalCount, profiles, loading } = searchResults;
   const [page, setPage] = useState(1);
-
-  useEffect(() => {
-    dispatch(clearListProfiles());
-  }, []);
 
   useEffect(() => {
     setPage(1);

@@ -60,7 +60,8 @@ export const listProfiles =
       dispatch({
         type: PROFILE_LIST_REQUEST,
       });
-      const { data } = await axios.get(
+
+      let { data } = await axios.get(
         `https://api.github.com/search/users?q=${searchTerm}&per_page=10&page=${page}`
       );
 
@@ -69,6 +70,7 @@ export const listProfiles =
         payload: {
           data: data.items,
           totalCount: data.total_count,
+          previousSearchTerm: searchTerm,
         },
       });
     } catch (error) {

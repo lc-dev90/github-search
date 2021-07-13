@@ -15,7 +15,7 @@ const SearchResultsScreen = ({ location }) => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const searchResults = useSelector((state) => state.profileList);
-  const { totalCount, profiles, loading } = searchResults;
+  const { totalCount, profiles, loading, previousSearchTerm } = searchResults;
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -43,7 +43,11 @@ const SearchResultsScreen = ({ location }) => {
   return (
     <>
       <Header />
-      <SearchInput query={query} setQuery={setQuery} />
+      <SearchInput
+        query={query}
+        setQuery={setQuery}
+        previousSearchTerm={previousSearchTerm}
+      />
       <SearchContainer>
         {loading ? (
           <div style={{ padding: "30px" }}>

@@ -47,7 +47,12 @@ export const profileDetailsReducer = (
 };
 
 export const profileListReducer = (
-  state = { profiles: [], totalCount: 0, loading: true },
+  state = {
+    profiles: [],
+    totalCount: 0,
+    loading: true,
+    previousSearchTerm: "",
+  },
   action
 ) => {
   switch (action.type) {
@@ -56,6 +61,7 @@ export const profileListReducer = (
         profiles: [],
         totalCount: 0,
         loading: true,
+        ...state,
       };
     case PROFILE_LIST_REQUEST:
       return {
@@ -65,6 +71,7 @@ export const profileListReducer = (
     case PROFILE_LIST_SUCCESS:
       return {
         loading: false,
+        previousSearchTerm: action.payload.previousSearchTerm,
         profiles: action.payload.data,
         totalCount: action.payload.totalCount,
       };
@@ -73,6 +80,7 @@ export const profileListReducer = (
         loading: false,
         error: action.payload,
         profiles: {},
+        ...state,
       };
     default:
       return state;

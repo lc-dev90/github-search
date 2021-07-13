@@ -5,7 +5,35 @@ import {
   PROFILE_LIST_SUCCESS,
   PROFILE_LIST_FAIL,
   CLEAN_PROFILE_LIST,
+  CLEAN_PROFILE_DETAILS,
+  PROFILE_DETAILS_REQUEST,
+  PROFILE_DETAILS_SUCCESS,
+  PROFILE_DETAILS_FAIL,
 } from "../constants/profileConstants";
+
+export const getProfileDetails = (profile) => async (dispatch) => {
+  try {
+    dispatch({
+      type: CLEAN_PROFILE_DETAILS,
+    });
+    dispatch({
+      type: PROFILE_DETAILS_REQUEST,
+    });
+    const data = axios.get(`https://api.github.com/users/${profile}`);
+    dispatch({
+      type: PROFILE_DETAILS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: PROFILE_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const clearListProfiles = () => (dispatch) => {
   dispatch({

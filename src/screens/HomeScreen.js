@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
 import { clearListProfiles } from "../redux/actions/profileActions";
 
@@ -10,11 +10,6 @@ import VerticalLogo from "../assets/logo-vertical.svg";
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
-  const searchResults = useSelector((state) => state.profileList);
-
-  useEffect(() => {
-    dispatch(clearListProfiles());
-  }, []);
 
   const [inputText, setInputText] = useState("");
   const submitHandler = (e) => {

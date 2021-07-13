@@ -3,7 +3,42 @@ import {
   PROFILE_LIST_SUCCESS,
   PROFILE_LIST_FAIL,
   CLEAN_PROFILE_LIST,
+  PROFILE_DETAILS_FAIL,
+  PROFILE_DETAILS_SUCCESS,
+  PROFILE_DETAILS_REQUEST,
+  CLEAN_PROFILE_DETAILS,
 } from "../constants/profileConstants";
+
+export const profileDetailsReducer = (
+  state = { profile: {}, loading: true },
+  action
+) => {
+  switch (action.type) {
+    case CLEAN_PROFILE_DETAILS:
+      return {
+        loading: true,
+        profile: {},
+      };
+    case PROFILE_DETAILS_REQUEST:
+      return {
+        loading: true,
+        ...state,
+      };
+    case PROFILE_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        profile: action.payload,
+      };
+    case PROFILE_DETAILS_FAIL:
+      return {
+        loading: false,
+        profile: {},
+        error: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 export const profileListReducer = (
   state = { profiles: [], totalCount: 0, loading: true },
@@ -31,6 +66,7 @@ export const profileListReducer = (
       return {
         loading: false,
         error: action.payload,
+        profiles: {},
       };
     default:
       return state;

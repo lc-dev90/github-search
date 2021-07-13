@@ -61,12 +61,11 @@ export const profileListReducer = (
         profiles: [],
         totalCount: 0,
         loading: true,
-        ...state,
+        previousSearchTerm: "",
       };
     case PROFILE_LIST_REQUEST:
       return {
         loading: true,
-        ...state,
       };
     case PROFILE_LIST_SUCCESS:
       return {

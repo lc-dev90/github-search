@@ -65,7 +65,7 @@ const SearchResultsScreen = ({ location }) => {
         ) : (
           <p>Sorry, no results.</p>
         )}
-        {profiles.length !== 0 ? (
+        {profiles ? (
           <Pagination
             style={{ marginTop: "20px" }}
             count={pages}

@@ -9,9 +9,17 @@ import { clearListProfiles } from "../redux/actions/profileActions";
 import VerticalLogo from "../assets/logo-vertical.svg";
 
 const HomeScreen = () => {
+  const [inputText, setInputText] = useState("");
   const dispatch = useDispatch();
 
-  const [inputText, setInputText] = useState("");
+  useEffect(() => {
+    dispatch(clearListProfiles());
+  }, []);
+
+  const changeHandler = (e) => {
+    setInputText(e.target.value);
+  };
+
   const submitHandler = (e) => {
     dispatch(clearListProfiles());
   };
@@ -26,7 +34,7 @@ const HomeScreen = () => {
             <input
               type="text"
               placeholder="Enter user name"
-              onChange={(e) => setInputText(e.target.value)}
+              onChange={changeHandler}
               autoCorrect="off"
               value={inputText}
             />

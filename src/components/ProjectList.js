@@ -28,8 +28,6 @@ const ListProject = styled.div`
   margin-top: 80px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 30px;
+  grid-gap: 40px;
   cursor: pointer;
 `;
-
-/* https://api.github.com/user/repos?page=2&per_page=100' */

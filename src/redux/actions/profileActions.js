@@ -11,6 +11,8 @@ import {
   PROFILE_DETAILS_FAIL,
 } from "../constants/profileConstants";
 
+const api = "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";
+
 export const getProfileDetails =
   (user, page = 1) =>
   async (dispatch) => {
@@ -26,9 +28,16 @@ export const getProfileDetails =
       const starred = await axios.get(
         `https://api.github.com/users/${user}/starred`
       );
+      const options = {
+        headers: {
+          Authorization: api,
+        },
+      };
       const repos = await axios.get(
-        `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`
+        `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`,
+        options
       );
+      console.log(repos);
       dispatch({
         type: PROFILE_DETAILS_SUCCESS,
         payload: {

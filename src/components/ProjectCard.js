@@ -44,7 +44,7 @@ export default ProjectCard;
 
 const Card = styled.div`
   background: #201f1f;
-  min-height: 135px;
+  min-height: 170px;
   width: 282px;
   border-radius: 10px;
   padding: 20px 24px;
@@ -75,6 +75,9 @@ const Card = styled.div`
   p {
     font-size: 0.9rem;
     flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 `;
 

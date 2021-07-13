@@ -10,21 +10,18 @@ const ProjectList = ({ repositories, user }) => {
   const [page, setPage] = useState(1);
   const dispatch = useDispatch();
   const profileDetails = useSelector((state) => state.profileDetails);
-  const { profile, starred, repos, loading } = profileDetails;
+  const { profile, repos, loading } = profileDetails;
   const pages = Math.ceil(profile.public_repos / 12);
-  /* 
-  useEffect(() => {
-    dispatch(getProfileDetails(user, page));
-  }, [page]); */
 
   const handleChangePagination = (e, v) => {
     setPage(v);
+    dispatch(getProfileDetails(profile.user, page));
     window.scrollTo(0, 0);
   };
   return (
     <>
       <ListProject>
-        {repositories.map((item) => (
+        {repos.map((item) => (
           <ProjectCard
             key={item.id}
             name={item.name}
@@ -32,7 +29,7 @@ const ProjectList = ({ repositories, user }) => {
             stargazers_count={item.stargazers_count}
             forks_count={item.forks_count}
             language={item.language}
-            user={user}
+            user={item.owner.login}
           />
         ))}
       </ListProject>

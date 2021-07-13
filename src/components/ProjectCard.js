@@ -57,7 +57,6 @@ const Card = styled.div`
   }
   div {
     display: flex;
-
     div {
       margin-right: 16px;
       span {

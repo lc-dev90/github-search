@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { MapMarkerAlt } from "@styled-icons/fa-solid/MapMarkerAlt";
 import { BuildingHouse } from "@styled-icons/boxicons-regular/BuildingHouse";
@@ -8,42 +9,34 @@ import { StarFill } from "@styled-icons/bootstrap/StarFill";
 
 import TotalRepo from "../assets/git_total.svg";
 
-const ProfileCard = ({
-  avatar,
-  name,
-  user,
-  twitter,
-  location,
-  company,
-  following,
-  followers,
-  repositories,
-  starred,
-}) => {
+const ProfileCard = () => {
+  const profileDetails = useSelector((state) => state.profileDetails);
+  const { profile, starred, repos } = profileDetails;
+
   return (
     <Card>
       <div className="card-avatar">
-        <img src={avatar} alt="avatar" />
+        <img src={profile.avatar_url} alt="avatar" />
       </div>
       <div style={{ flex: "1" }}>
         <h2 style={{ color: "#8752cc", fontSize: "1.6rem" }}>
-          {name ? name : user}
+          {profile.name ? profile.name : profile.user}
         </h2>
-        <span>@{twitter ? twitter : user}</span>
+        <span>@{profile.twitter ? profile.twitter : profile.login}</span>
         <div className="card-location">
-          {location ? (
+          {profile.location ? (
             <div>
               <LocalIcon />
-              <span>{location}</span>
+              <span>{profile.location}</span>
             </div>
           ) : (
             ""
           )}
 
-          {company ? (
+          {profile.company ? (
             <div>
               <CompanyIcon />
-              <span>{company} </span>
+              <span>{profile.company} </span>
             </div>
           ) : (
             ""
@@ -51,13 +44,13 @@ const ProfileCard = ({
         </div>
         <div className="card-follow-information">
           <div>
-            <FollowersIcon /> {followers}
+            <FollowersIcon /> {profile.followers}
           </div>
           <div>
-            <FollowingIcon /> {following}
+            <FollowingIcon /> {profile.following}
           </div>
           <div>
-            <StarIcon /> {starred}
+            <StarIcon /> {starred.length}
           </div>
         </div>
       </div>
@@ -67,7 +60,7 @@ const ProfileCard = ({
           <div style={{ marginRight: "10px" }}>
             <img src={TotalRepo} alt="total repositories" />
           </div>
-          <h3>{repositories}</h3>
+          <h3>{repos.length}</h3>
         </div>
       </div>
     </Card>

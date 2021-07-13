@@ -7,6 +7,9 @@ import {
   PROFILE_DETAILS_SUCCESS,
   PROFILE_DETAILS_REQUEST,
   CLEAN_PROFILE_DETAILS,
+  GET_MORE_PROJECTS_FAIL,
+  GET_MORE_PROJECTS_REQUEST,
+  GET_MORE_PROJECTS_SUCCESS,
 } from "../constants/profileConstants";
 
 export const profileDetailsReducer = (
@@ -14,6 +17,25 @@ export const profileDetailsReducer = (
   action
 ) => {
   switch (action.type) {
+    case GET_MORE_PROJECTS_REQUEST:
+      return {
+        loading: true,
+        ...state,
+      };
+    case GET_MORE_PROJECTS_SUCCESS:
+      return {
+        loading: false,
+        repos: action.payload,
+        ...state,
+      };
+    case GET_MORE_PROJECTS_FAIL:
+      return {
+        loading: false,
+        profile: {},
+        starred: [],
+        repos: [],
+        error: action.payload,
+      };
     case CLEAN_PROFILE_DETAILS:
       return {
         loading: true,

@@ -17,14 +17,13 @@ export const getProfileDetails =
   (user, page = 1) =>
   async (dispatch) => {
     try {
-      dispatch({
+      /*       dispatch({
         type: CLEAN_PROFILE_DETAILS,
-      });
+      }); */
       dispatch({
         type: PROFILE_DETAILS_REQUEST,
       });
       const profile = await axios.get(`https://api.github.com/users/${user}`);
-
       const starred = await axios.get(
         `https://api.github.com/users/${user}/starred`
       );

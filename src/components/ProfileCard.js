@@ -60,7 +60,7 @@ const ProfileCard = () => {
           <div style={{ marginRight: "10px" }}>
             <img src={TotalRepo} alt="total repositories" />
           </div>
-          <h3>{repos.length}</h3>
+          <h3>{profile.public_repos}</h3>
         </div>
       </div>
     </Card>

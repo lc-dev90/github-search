@@ -17,6 +17,7 @@ import { PeopleTeam as PeopleTeamFill } from "@styled-icons/fluentui-system-fill
 import { StarFill } from "@styled-icons/bootstrap/StarFill";
 import { EyeFill } from "@styled-icons/bootstrap/EyeFill";
 import { BranchFork } from "@styled-icons/fluentui-system-regular";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const formatDate = (dateString) => {
   if (dateString) {
@@ -65,25 +66,33 @@ const ProjectDetailsScreen = ({ match }) => {
                   <div className="details__project_info">
                     <span>
                       <i>
-                        <StarIcon />
+                        <Tooltip title="Stars" arrow placement="top">
+                          <StarIcon />
+                        </Tooltip>
                       </i>
                       <span>{project.stargazers_count}</span>
                     </span>
                     <span>
                       <i>
-                        <EyeIcon />
+                        <Tooltip title="Watchers" arrow placement="top">
+                          <EyeIcon />
+                        </Tooltip>
                       </i>
                       <span>{project.watchers_count}</span>
                     </span>
                     <span>
                       <i>
-                        <BranchForkIcon />
+                        <Tooltip title="Forks" arrow placement="top">
+                          <BranchForkIcon />
+                        </Tooltip>
                       </i>
                       <span>{project.forks}</span>
                     </span>
                     <span>
                       <i>
-                        <FollowersIcon />
+                        <Tooltip title="Subscribers" arrow placement="top">
+                          <FollowersIcon />
+                        </Tooltip>
                       </i>
                       <span>{project.subscribers_count} </span>
                     </span>
@@ -131,9 +140,13 @@ const ProjectDetailsScreen = ({ match }) => {
                 <span>
                   Size: <span>{project.size} kb</span>
                 </span>
-                <span>
-                  Language: <span>{project.language}</span>
-                </span>
+                {project.language ? (
+                  <span>
+                    Language: <span>{project.language}</span>
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           </div>
@@ -165,7 +178,11 @@ const Main = styled.main`
       background: #201f1f;
       padding: 30px;
       border-radius: 10px;
-
+      border: 5px solid transparent;
+      cursor: pointer;
+      &:hover {
+        border-color: #83838312;
+      }
       .details__main {
         margin-bottom: 28px;
         div {

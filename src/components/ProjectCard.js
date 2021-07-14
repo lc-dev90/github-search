@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { BranchFork } from "@styled-icons/fluentui-system-regular";
 import { StarFill } from "@styled-icons/bootstrap/StarFill";
 import { FileEarmarkCodeFill } from "@styled-icons/bootstrap/FileEarmarkCodeFill";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const ProjectCard = ({
   name,
@@ -19,24 +20,34 @@ const ProjectCard = ({
         <h4>{name}</h4>
         <p>{description ? description : "No description"}</p>
         <div>
-          <div>
+          <Tooltip title={`Stars: ${stargazers_count}`} arrow placement="top">
             <div>
-              <StarFillIcon />
+              <div>
+                <StarFillIcon />
+              </div>
+              <span>{stargazers_count}</span>
             </div>
-            <span>{stargazers_count}</span>
-          </div>
-          <div>
+          </Tooltip>
+          <Tooltip title={`Forks: ${forks_count}`} arrow placement="top">
             <div>
-              <BranchForkIcon />
+              <div>
+                <BranchForkIcon />
+              </div>
+              <span> {forks_count}</span>
             </div>
-            <span> {forks_count}</span>
-          </div>
-          <div>
-            <div>
-              <FileEarmarkCodeFillIcon />
-            </div>
-            <span>{language}</span>
-          </div>
+          </Tooltip>
+          {language ? (
+            <Tooltip title={`Language: ${language}`} arrow placement="top">
+              <div>
+                <div>
+                  <FileEarmarkCodeFillIcon />
+                </div>
+                <span>{language}</span>
+              </div>
+            </Tooltip>
+          ) : (
+            ""
+          )}
         </div>
       </Card>
     </Link>

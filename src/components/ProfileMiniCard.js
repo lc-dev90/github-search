@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const ProfileMiniCard = ({ user, avatar, url }) => {
   return (
@@ -10,25 +11,29 @@ const ProfileMiniCard = ({ user, avatar, url }) => {
       <div>
         <img src={avatar} alt={user} />
       </div>
-      <span>
-        <i>
-          <UserIcon />
-        </i>
-        {user}
-      </span>
-      <a
-        style={{ marginTop: "6px", width: "100%" }}
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-      >
+      <Tooltip title={`User: ${user}`} arrow placement="left">
         <span>
           <i>
-            <LinkExternalIcon />
+            <UserIcon />
           </i>
-          {url.split("//")[1]}
+          {user}
         </span>
-      </a>
+      </Tooltip>
+      <Tooltip title="Click to open the profile user" arrow placement="left">
+        <a
+          style={{ marginTop: "6px", width: "100%" }}
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span>
+            <i>
+              <LinkExternalIcon />
+            </i>
+            {url.split("//")[1]}
+          </span>
+        </a>
+      </Tooltip>
     </MiniCard>
   );
 };

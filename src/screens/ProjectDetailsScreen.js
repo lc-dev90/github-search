@@ -16,7 +16,11 @@ import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
 const formatDate = (dateString) => {
   if (dateString) {
     const data = new Date(Date.parse(dateString));
-    return data.toLocaleString("en-GB", { timeZone: "UTC" });
+    return data.toLocaleString("en-GB", {
+      timeZone: "UTC",
+      dateStyle: "short",
+      timeStyle: "short",
+    });
   }
 };
 

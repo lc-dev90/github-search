@@ -14,7 +14,7 @@ const ProjectCard = ({
   user,
 }) => {
   return (
-    <Link to={`/${user}/${name}`}>
+    <Link to={`/user/${user}/${name}`}>
       <Card>
         <h4>{name}</h4>
         <p>{description ? description : "No description"}</p>

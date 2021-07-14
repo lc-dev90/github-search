@@ -17,7 +17,7 @@ const ProfileMiniCard = ({ user, avatar, url }) => {
         {user}
       </span>
       <a
-        style={{ marginTop: "6px" }}
+        style={{ marginTop: "6px", width: "100%" }}
         href={url}
         target="_blank"
         rel="noreferrer"
@@ -42,12 +42,12 @@ const MiniCard = styled.div`
   flex-direction: column;
   justify-content: center;
   background: #201f1f;
-  padding: 10px;
+  padding: 30px;
   height: fit-content;
   cursor: pointer;
   border-radius: 10px;
   font-size: 0.8rem;
-  margin-left: 30px;
+  margin-left: 60px;
   &:hover {
     border-color: #83838312;
   }

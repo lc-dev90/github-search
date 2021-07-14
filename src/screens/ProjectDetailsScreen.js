@@ -12,6 +12,11 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import ProfileMiniCard from "../components/ProfileMiniCard";
 import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
+import { PeopleTeam } from "@styled-icons/fluentui-system-regular";
+import { PeopleTeam as PeopleTeamFill } from "@styled-icons/fluentui-system-filled";
+import { StarFill } from "@styled-icons/bootstrap/StarFill";
+import { EyeFill } from "@styled-icons/bootstrap/EyeFill";
+import { BranchFork } from "@styled-icons/fluentui-system-regular";
 
 const formatDate = (dateString) => {
   if (dateString) {
@@ -55,7 +60,36 @@ const ProjectDetailsScreen = ({ match }) => {
             />
             <div className="details">
               <div className="details__main">
-                <h2>project Details</h2>
+                <div>
+                  <h2>project Details</h2>
+                  <div className="details__project_info">
+                    <span>
+                      <i>
+                        <StarIcon />
+                      </i>
+                      <span>{project.stargazers_count}</span>
+                    </span>
+                    <span>
+                      <i>
+                        <EyeIcon />
+                      </i>
+                      <span>{project.watchers_count}</span>
+                    </span>
+                    <span>
+                      <i>
+                        <BranchForkIcon />
+                      </i>
+                      <span>{project.forks}</span>
+                    </span>
+                    <span>
+                      <i>
+                        <FollowersIcon />
+                      </i>
+                      <span>{project.subscribers_count} </span>
+                    </span>
+                  </div>
+                </div>
+
                 <h3>{project.name}</h3>
                 <span>
                   {project.description ? project.description : "None"}
@@ -71,9 +105,21 @@ const ProjectDetailsScreen = ({ match }) => {
                 <span>
                   SSH Url: <span>{project.ssh_url}</span>
                 </span>
-                <span>
-                  {project.homepage ? `Homepage: ${project.homepage}` : ""}
-                </span>
+                {project.homepage ? (
+                  <span>
+                    Homepage: <span>{project.homepage}</span>
+                  </span>
+                ) : (
+                  ""
+                )}
+                {project.license ? (
+                  <span>
+                    License:
+                    <span>{project.license.name}</span>
+                  </span>
+                ) : (
+                  ""
+                )}
               </div>
               <div className="details__other-info">
                 <span>
@@ -87,25 +133,6 @@ const ProjectDetailsScreen = ({ match }) => {
                 </span>
                 <span>
                   Language: <span>{project.language}</span>
-                </span>
-              </div>
-              <div className="details__project_info">
-                <span>
-                  Stars: <span>{project.stargazers_count}</span>
-                </span>
-                <span>
-                  Watchers: <span>{project.watchers_count}</span>
-                </span>
-                <span>
-                  Forks: <span>{project.forks}</span>
-                </span>
-
-                <span>
-                  Subscribers: <span>{project.subscribers_count} </span>
-                </span>
-
-                <span>
-                  {project.license ? `License: ${project.license.name}` : ""}
                 </span>
               </div>
             </div>
@@ -140,54 +167,61 @@ const Main = styled.main`
       border-radius: 10px;
 
       .details__main {
-        h2 {
-          font-size: 0.9rem;
-          text-transform: uppercase;
-          color: #8752cc;
-          margin-bottom: 1rem;
+        margin-bottom: 28px;
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-bottom: 30px;
+          div {
+            padding-bottom: 0;
+          }
+          h2 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            color: #8752cc;
+          }
         }
         h3 {
-          margin-bottom: 0.7rem;
+          margin-bottom: 0.8rem;
         }
         span {
           text-transform: none;
           font-size: 0.9rem;
           color: #b2b2b2;
-          margin-bottom: 20px;
         }
       }
       .details__links {
         margin-bottom: 15px;
         span {
           display: block;
-          margin-bottom: 10px;
+
+          margin-bottom: 20px;
+          margin-top: 5px;
           span {
             display: block;
           }
         }
       }
       .details__other-info {
-        margin-bottom: 10px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
         span {
           display: block;
-          margin-bottom: 10px;
           span {
           }
         }
       }
       .details__project_info {
-        margin-top: 20px;
         display: flex;
         align-items: center;
         justify-content: left;
         flex-wrap: wrap;
         span {
           display: inline-block;
-
+          margin-right: 10px;
           span {
           }
         }
@@ -216,12 +250,28 @@ const Main = styled.main`
   }
 `;
 
-const UserIcon = styled(User)`
+const LinkExternalIcon = styled(LinkExternal)`
+  color: #8752cc;
+`;
+
+const StarIcon = styled(StarFill)`
+  color: #8752cc;
+  width: 20px;
+  margin-right: 6px;
+`;
+
+const FollowersIcon = styled(PeopleTeamFill)`
   color: #8752cc;
   width: 22px;
   margin-right: 6px;
 `;
-
-const LinkExternalIcon = styled(LinkExternal)`
+const EyeIcon = styled(EyeFill)`
   color: #8752cc;
+  width: 22px;
+  margin-right: 6px;
+`;
+const BranchForkIcon = styled(BranchFork)`
+  color: #8752cc;
+  width: 22px;
+  margin-right: 6px;
 `;

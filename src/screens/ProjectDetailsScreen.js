@@ -45,7 +45,7 @@ const ProjectDetailsScreen = ({ match }) => {
             <hr />
             <span>Creation date: {project.created_at}</span>
             <span>Last Update: {project.updated_at}</span>
-            <span>Url: {project.url}</span>
+            <span>Url: {project.html_url}</span>
             <span>Description: {project.description}</span>
             <span>Git Url: {project.git_url}</span>
             <span>SSH Url: {project.ssh_url}</span>

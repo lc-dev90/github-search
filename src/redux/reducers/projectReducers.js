@@ -5,7 +5,7 @@ import {
 } from "../constants/projectConstants";
 
 export const projectDetailsReducer = (
-  state = { loading: true, project: [] },
+  state = { loading: true, project: [], error: "" },
   action
 ) => {
   switch (action.type) {
@@ -16,6 +16,7 @@ export const projectDetailsReducer = (
       };
     case PROJECT_DETAILS_SUCCESS:
       return {
+        ...state,
         loading: false,
         project: action.payload,
       };

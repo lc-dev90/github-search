@@ -30,7 +30,6 @@ export const getMoreProjectsFromProfile = (user, page) => async (dispatch) => {
       `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`,
       options
     );
-    console.log(repos.data);
     dispatch({
       type: GET_MORE_PROJECTS_SUCCESS,
       payload: repos.data,
@@ -96,9 +95,6 @@ export const listProfiles =
   (searchTerm, page = 1) =>
   async (dispatch) => {
     try {
-      /*  dispatch({
-        type: CLEAN_PROFILE_LIST,
-      }); */
       dispatch({
         type: PROFILE_LIST_REQUEST,
       });

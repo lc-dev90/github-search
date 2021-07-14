@@ -8,9 +8,12 @@ import {
   profileDetailsReducer,
 } from "./reducers/profileReducers";
 
+import { projectDetailsReducer } from "./reducers/projectReducers";
+
 const reducer = combineReducers({
   profileList: profileListReducer,
   profileDetails: profileDetailsReducer,
+  projectDetails: projectDetailsReducer,
 });
 
 const initialState = {};

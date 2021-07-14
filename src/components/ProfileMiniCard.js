@@ -26,7 +26,7 @@ const ProfileMiniCard = ({ user, avatar, url }) => {
           <i>
             <LinkExternalIcon />
           </i>
-          {url}
+          {url.split("//")[1]}
         </span>
       </a>
     </MiniCard>
@@ -42,10 +42,12 @@ const MiniCard = styled.div`
   flex-direction: column;
   justify-content: center;
   background: #201f1f;
-  padding: 30px;
+  padding: 10px;
   height: fit-content;
   cursor: pointer;
   border-radius: 10px;
+  font-size: 0.8rem;
+  margin-left: 30px;
   &:hover {
     border-color: #83838312;
   }
@@ -59,8 +61,8 @@ const MiniCard = styled.div`
   }
   div {
     margin-bottom: 24px;
-    width: 200px;
-    height: 200px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     overflow: hidden;
 

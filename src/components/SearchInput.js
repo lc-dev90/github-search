@@ -7,6 +7,8 @@ import { clearListProfiles } from "../redux/actions/profileActions";
 
 const SearchInput = ({ query, setQuery, previousSearchTerm }) => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState(false);
   let history = useHistory();
   const dispatch = useDispatch();
 
@@ -16,6 +18,9 @@ const SearchInput = ({ query, setQuery, previousSearchTerm }) => {
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
+    if (error) {
+      setError(false);
+    }
   };
 
   const submitHandler = (e) => {
@@ -25,6 +30,12 @@ const SearchInput = ({ query, setQuery, previousSearchTerm }) => {
       dispatch(clearListProfiles());
       setQuery(searchTerm || e.target.value);
       history.push(`/search?q=${searchTerm}`);
+    } else if (searchTerm === previousSearchTerm) {
+      setError(true);
+      setMsg("Please, enter another value");
+    } else {
+      setError(true);
+      setMsg("Please, enter some value");
     }
   };
 
@@ -45,6 +56,7 @@ const SearchInput = ({ query, setQuery, previousSearchTerm }) => {
               <SearchIcon />
             </div>
           </button>
+          {error ? <span className="msg">{msg}</span> : ""}
         </div>
       </form>
     </SearchInputContainer>
@@ -61,6 +73,16 @@ const SearchInputContainer = styled.div`
   form {
     div {
       position: relative;
+      .msg {
+        position: absolute;
+        left: 2px;
+        bottom: -22px;
+        color: #d64646de;
+        font-size: 0.85rem;
+        font-style: italic;
+        animation-duration: 0.3s;
+        animation-name: error;
+      }
       button {
         position: absolute;
         height: 100%;

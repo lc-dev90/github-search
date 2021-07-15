@@ -18,7 +18,6 @@ const HomeScreen = () => {
   const changeHandler = (e) => {
     setInputText(e.target.value);
     setError(false);
-    console.log(error);
   };
 
   const submitHandler = (e) => {
@@ -28,7 +27,6 @@ const HomeScreen = () => {
       history.push(`/search?q=${inputText}`);
     } else {
       setError(true);
-      console.log(error);
       setMsg("Please, enter some value");
     }
   };

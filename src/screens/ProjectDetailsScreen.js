@@ -35,12 +35,7 @@ const ProjectDetailsScreen = ({ match }) => {
   const projectDetails = useSelector((state) => state.projectDetails);
   const { project, loading } = projectDetails;
 
-  /* `https://api.github.com/repos/${user}/${project}/languages` */
-  /* `https://api.github.com/repos/${user}/${project}/contributors` */
-
   useEffect(() => {
-    /*    setUser(match.params.user);
-    setProject(match.params.project); */
     dispatch(getProjectDetails(match.params.user, match.params.project));
   }, []);
 
@@ -200,23 +195,30 @@ const Main = styled.main`
           }
         }
         h3 {
-          margin-bottom: 0.8rem;
+          margin-bottom: 0rem;
+          color: white;
+          font-weight: 900;
+          font-size: 1.6rem;
         }
         span {
           text-transform: none;
           font-size: 0.9rem;
           color: #b2b2b2;
+          font-weight: 400;
         }
       }
       .details__links {
         margin-bottom: 15px;
         span {
           display: block;
-
+          font-weight: 100;
           margin-bottom: 20px;
           margin-top: 5px;
+          color: white;
           span {
             display: block;
+            color: white;
+            font-weight: 400;
           }
         }
       }
@@ -249,11 +251,13 @@ const Main = styled.main`
         display: block;
         text-transform: uppercase;
         color: white;
+        font-weight: 100;
 
         span {
           font-size: 0.9rem;
           text-transform: none;
-          color: #b2b2b2;
+          color: white;
+          font-weight: 400;
         }
       }
     }

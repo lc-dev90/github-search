@@ -6,12 +6,13 @@ import { BuildingHouse } from "@styled-icons/boxicons-regular/BuildingHouse";
 import { PeopleTeam } from "@styled-icons/fluentui-system-regular";
 import { PeopleTeam as PeopleTeamFill } from "@styled-icons/fluentui-system-filled";
 import { StarFill } from "@styled-icons/bootstrap/StarFill";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import TotalRepo from "../assets/git_total.svg";
 
 const ProfileCard = () => {
   const profileDetails = useSelector((state) => state.profileDetails);
-  const { profile, starred, repos } = profileDetails;
+  const { profile, starred } = profileDetails;
 
   return (
     <Card>
@@ -22,7 +23,14 @@ const ProfileCard = () => {
         <h2 style={{ color: "#8752cc", fontSize: "1.6rem" }}>
           {profile.name ? profile.name : profile.user}
         </h2>
-        <span>@{profile.twitter ? profile.twitter : profile.login}</span>
+        <span
+          style={{
+            color: "white",
+            fontWeight: "900",
+          }}
+        >
+          @{profile.twitter ? profile.twitter : profile.login}
+        </span>
         <div className="card-location">
           {profile.location ? (
             <div>
@@ -43,15 +51,21 @@ const ProfileCard = () => {
           )}
         </div>
         <div className="card-follow-information">
-          <div>
-            <FollowersIcon /> {profile.followers}
-          </div>
-          <div>
-            <FollowingIcon /> {profile.following}
-          </div>
-          <div>
-            <StarIcon /> {starred.length}
-          </div>
+          <Tooltip title="Followers" arrow placement="bottom">
+            <div>
+              <FollowersIcon /> {profile.followers}
+            </div>
+          </Tooltip>
+          <Tooltip title="Following" arrow placement="bottom">
+            <div>
+              <FollowingIcon /> {profile.following}
+            </div>
+          </Tooltip>
+          <Tooltip title="Stars" arrow placement="bottom">
+            <div>
+              <StarIcon /> {starred.length}
+            </div>
+          </Tooltip>
         </div>
       </div>
       <div className="total-repositories">

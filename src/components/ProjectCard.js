@@ -83,6 +83,7 @@ const Card = styled.div`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: #ffffffd1;
   }
   p {
     font-size: 0.9rem;

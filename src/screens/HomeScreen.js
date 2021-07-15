@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
 import { clearListProfiles } from "../redux/actions/profileActions";
 
@@ -10,15 +10,29 @@ import VerticalLogo from "../assets/logo-vertical.svg";
 
 const HomeScreen = () => {
   const [inputText, setInputText] = useState("");
+  const [msg, setMsg] = useState("");
+  const [error, setError] = useState(false);
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const changeHandler = (e) => {
     setInputText(e.target.value);
+    setError(false);
+    console.log(error);
   };
 
   const submitHandler = (e) => {
-    dispatch(clearListProfiles());
+    e.preventDefault();
+    if (inputText !== "") {
+      dispatch(clearListProfiles());
+      history.push(`/search?q=${inputText}`);
+    } else {
+      setError(true);
+      console.log(error);
+      setMsg("Please, enter some value");
+    }
   };
+
   return (
     <Main>
       <Container>
@@ -26,7 +40,7 @@ const HomeScreen = () => {
           <img src={VerticalLogo} alt="Logo" />
         </div>
         <form onSubmit={submitHandler}>
-          <div>
+          <div className="form-control" error={error}>
             <input
               type="text"
               placeholder="Enter user name"
@@ -34,16 +48,15 @@ const HomeScreen = () => {
               autoCorrect="off"
               value={inputText}
             />
+            {error ? <span className="msg">{msg}</span> : ""}
           </div>
           <div>
-            <Link to={`/search?q=${inputText}`} onClick={submitHandler}>
-              <button type="submit" value="Search">
-                Search
-                <span>
-                  <SearchIcon />
-                </span>
-              </button>
-            </Link>
+            <button type="submit" value="Search">
+              Search
+              <span>
+                <SearchIcon />
+              </span>
+            </button>
           </div>
         </form>
       </Container>
@@ -74,7 +87,41 @@ const Container = styled.div`
   flex-direction: column;
   form {
     width: 100%;
+    .form-control {
+      color: ${(props) => (props.error ? "red" : "transparent")};
+    }
     div {
+      position: relative;
+
+      .msg {
+        position: absolute;
+        left: 2px;
+        bottom: -22px;
+        color: #d64646de;
+        font-size: 0.85rem;
+        font-style: italic;
+        animation-duration: 0.3s;
+        animation-name: error;
+      }
+      @keyframes error {
+        0% {
+        }
+        20% {
+          transform: translateX(-20px);
+        }
+        40% {
+          transform: translateX(20px);
+        }
+        60% {
+          transform: translateX(-20px);
+        }
+        80% {
+          transform: translateX(20px);
+        }
+        100% {
+          transform: translateX(0);
+        }
+      }
       &:nth-of-type(1) {
         margin: 30px 0 55px;
       }
@@ -101,7 +148,6 @@ const Container = styled.div`
           text-align: center;
         }
       }
-
       button {
         width: 100%;
         font-family: inherit;

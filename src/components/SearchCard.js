@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
 import { Info } from "@styled-icons/evaicons-solid/Info";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const SearchCard = ({ avatar, username, url }) => {
   return (
@@ -22,13 +23,15 @@ const SearchCard = ({ avatar, username, url }) => {
           <i>
             <LinkExternalIcon />
           </i>
-          <Link
-            to={{ pathname: url }}
-            target="_blank"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {url}
-          </Link>
+          <Tooltip title="Click to redirect" arrow placement="bottom">
+            <Link
+              to={{ pathname: url }}
+              target="_blank"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {url}
+            </Link>
+          </Tooltip>
         </p>
         <Link to={`user/${username}`}>
           <span className="information">
@@ -115,6 +118,7 @@ const Card = styled.div`
         text-transform: uppercase;
         display: flex;
         align-items: center;
+
         i {
           width: 30px;
           display: inline-block;
@@ -127,6 +131,9 @@ const Card = styled.div`
         a {
           text-transform: none;
           font-size: 1rem;
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

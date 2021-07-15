@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -10,15 +10,19 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import ProfileMiniCard from "../components/ProfileMiniCard";
-import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
-import { PeopleTeam } from "@styled-icons/fluentui-system-regular";
 import { PeopleTeam as PeopleTeamFill } from "@styled-icons/fluentui-system-filled";
 import { StarFill } from "@styled-icons/bootstrap/StarFill";
 import { EyeFill } from "@styled-icons/bootstrap/EyeFill";
 import { BranchFork } from "@styled-icons/fluentui-system-regular";
 import Tooltip from "@material-ui/core/Tooltip";
 import Fade from "react-reveal/Fade";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const formatDate = (dateString) => {
   if (dateString) {
@@ -35,10 +39,28 @@ const ProjectDetailsScreen = ({ match }) => {
   const dispatch = useDispatch();
   const projectDetails = useSelector((state) => state.projectDetails);
   const { project, loading } = projectDetails;
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getProjectDetails(match.params.user, match.params.project));
   }, []);
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
+  const handleCopyLinks = (e) => {
+    setOpen(true);
+    const el = document.createElement("textarea");
+    el.value = e.target.textContent;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand("copy");
+    document.body.removeChild(el);
+  };
 
   return (
     <>
@@ -105,17 +127,31 @@ const ProjectDetailsScreen = ({ match }) => {
                 </div>
                 <div className="details__links">
                   <span>
-                    Link: <span>{project.html_url}</span>
+                    Link:
+                    <Tooltip title="Click to copy" arrow placement="top">
+                      <span onClick={handleCopyLinks}>{project.html_url}</span>
+                    </Tooltip>
                   </span>
                   <span>
-                    Git Url: <span>{project.git_url}</span>
+                    Git Url:
+                    <Tooltip title="Click to copy" arrow placement="top">
+                      <span onClick={handleCopyLinks}>{project.git_url}</span>
+                    </Tooltip>
                   </span>
+
                   <span>
-                    SSH Url: <span>{project.ssh_url}</span>
+                    SSH Url:
+                    <Tooltip title="Click to copy" arrow placement="top">
+                      <span onClick={handleCopyLinks}>{project.ssh_url}</span>
+                    </Tooltip>
                   </span>
+
                   {project.homepage ? (
-                    <span>
-                      Homepage: <span>{project.homepage}</span>
+                    <span onClick={handleCopyLinks}>
+                      Homepage:{" "}
+                      <Tooltip title="Click to copy" arrow placement="top">
+                        <span>{project.homepage}</span>
+                      </Tooltip>
                     </span>
                   ) : (
                     ""
@@ -149,6 +185,11 @@ const ProjectDetailsScreen = ({ match }) => {
                 </div>
               </div>
             </Fade>
+            <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
+              <Alert onClose={handleClose} severity="success">
+                Coppied!
+              </Alert>
+            </Snackbar>
           </div>
         )}
       </Main>
@@ -245,6 +286,12 @@ const Main = styled.main`
             display: block;
             color: white;
             font-weight: 400;
+            position: relative;
+
+            margin-bottom: 0;
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }

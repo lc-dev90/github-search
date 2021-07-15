@@ -62,7 +62,6 @@ const MiniCard = styled.div`
     flex-wrap: wrap;
   }
   @media (max-width: 550px) {
-    flex-direction: column;
   }
   &:hover {
     border-color: #83838312;
@@ -85,20 +84,15 @@ const MiniCard = styled.div`
     }
     &:nth-of-type(2) {
       flex: 1;
-      overflow: auto;
       display: flex;
       flex-direction: column;
     }
     @media (max-width: 800px) {
       &:nth-of-type(1) {
-        margin-bottom: 0px;
-        margin-right: 20px;
-      }
-    }
-    @media (max-width: 550px) {
-      &:nth-of-type(1) {
         margin-bottom: 20px;
-        margin-right: 0px;
+        margin-right: 20px;
+        width: 50px;
+        height: 50px;
       }
     }
 

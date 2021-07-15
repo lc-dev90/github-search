@@ -72,119 +72,116 @@ const ProjectDetailsScreen = ({ match }) => {
           </div>
         ) : (
           <div className="container">
-            <Fade right>
-              <ProfileMiniCard
-                user={project.owner.login}
-                avatar={project.owner.avatar_url}
-                url={project.owner.html_url}
-              />
-            </Fade>
-            <Fade left>
-              <div className="details">
-                <div className="details__main">
-                  <div>
-                    <h2>project Details</h2>
-                    <div className="details__project_info">
-                      <span>
-                        <i>
-                          <Tooltip title="Stars" arrow placement="top">
-                            <StarIcon />
-                          </Tooltip>
-                        </i>
-                        <span>{project.stargazers_count}</span>
-                      </span>
-                      <span>
-                        <i>
-                          <Tooltip title="Watchers" arrow placement="top">
-                            <EyeIcon />
-                          </Tooltip>
-                        </i>
-                        <span>{project.watchers_count}</span>
-                      </span>
-                      <span>
-                        <i>
-                          <Tooltip title="Forks" arrow placement="top">
-                            <BranchForkIcon />
-                          </Tooltip>
-                        </i>
-                        <span>{project.forks}</span>
-                      </span>
-                      <span>
-                        <i>
-                          <Tooltip title="Subscribers" arrow placement="top">
-                            <FollowersIcon />
-                          </Tooltip>
-                        </i>
-                        <span>{project.subscribers_count} </span>
-                      </span>
-                    </div>
+            <ProfileMiniCard
+              user={project.owner.login}
+              avatar={project.owner.avatar_url}
+              url={project.owner.html_url}
+            />
+
+            <div className="details">
+              <div className="details__main">
+                <div>
+                  <h2>project Details</h2>
+                  <div className="details__project_info">
+                    <span>
+                      <i>
+                        <Tooltip title="Stars" arrow placement="top">
+                          <StarIcon />
+                        </Tooltip>
+                      </i>
+                      <span>{project.stargazers_count}</span>
+                    </span>
+                    <span>
+                      <i>
+                        <Tooltip title="Watchers" arrow placement="top">
+                          <EyeIcon />
+                        </Tooltip>
+                      </i>
+                      <span>{project.watchers_count}</span>
+                    </span>
+                    <span>
+                      <i>
+                        <Tooltip title="Forks" arrow placement="top">
+                          <BranchForkIcon />
+                        </Tooltip>
+                      </i>
+                      <span>{project.forks}</span>
+                    </span>
+                    <span>
+                      <i>
+                        <Tooltip title="Subscribers" arrow placement="top">
+                          <FollowersIcon />
+                        </Tooltip>
+                      </i>
+                      <span>{project.subscribers_count} </span>
+                    </span>
                   </div>
-
-                  <h3>{project.name}</h3>
-                  <span>
-                    {project.description ? project.description : "None"}
-                  </span>
                 </div>
-                <div className="details__links">
-                  <span>
-                    Link:
-                    <Tooltip title="Click to copy" arrow placement="top">
-                      <span onClick={handleCopyLinks}>{project.html_url}</span>
-                    </Tooltip>
-                  </span>
-                  <span>
-                    Git Url:
-                    <Tooltip title="Click to copy" arrow placement="top">
-                      <span onClick={handleCopyLinks}>{project.git_url}</span>
-                    </Tooltip>
-                  </span>
 
-                  <span>
-                    SSH Url:
-                    <Tooltip title="Click to copy" arrow placement="top">
-                      <span onClick={handleCopyLinks}>{project.ssh_url}</span>
-                    </Tooltip>
-                  </span>
-
-                  {project.homepage ? (
-                    <span onClick={handleCopyLinks}>
-                      Homepage:{" "}
-                      <Tooltip title="Click to copy" arrow placement="top">
-                        <span>{project.homepage}</span>
-                      </Tooltip>
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                  {project.license ? (
-                    <span>
-                      License:
-                      <span>{project.license.name}</span>
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                <div className="details__other-info">
-                  <span>
-                    Created: <span>{formatDate(project.created_at)}</span>
-                  </span>
-                  <span>
-                    Updated: <span>{formatDate(project.updated_at)}</span>
-                  </span>
-                  <span>
-                    Size: <span>{project.size} kb</span>
-                  </span>
-                  {project.language ? (
-                    <span>
-                      Language: <span>{project.language}</span>
-                    </span>
-                  ) : (
-                    ""
-                  )}
-                </div>
+                <h3>{project.name}</h3>
+                <span>
+                  {project.description ? project.description : "None"}
+                </span>
               </div>
-            </Fade>
+              <div className="details__links">
+                <span>
+                  Link:
+                  <Tooltip title="Click to copy" arrow placement="top">
+                    <span onClick={handleCopyLinks}>{project.html_url}</span>
+                  </Tooltip>
+                </span>
+                <span>
+                  Git Url:
+                  <Tooltip title="Click to copy" arrow placement="top">
+                    <span onClick={handleCopyLinks}>{project.git_url}</span>
+                  </Tooltip>
+                </span>
+
+                <span>
+                  SSH Url:
+                  <Tooltip title="Click to copy" arrow placement="top">
+                    <span onClick={handleCopyLinks}>{project.ssh_url}</span>
+                  </Tooltip>
+                </span>
+
+                {project.homepage ? (
+                  <span onClick={handleCopyLinks}>
+                    Homepage:{" "}
+                    <Tooltip title="Click to copy" arrow placement="top">
+                      <span>{project.homepage}</span>
+                    </Tooltip>
+                  </span>
+                ) : (
+                  ""
+                )}
+                {project.license ? (
+                  <span>
+                    License:
+                    <span>{project.license.name}</span>
+                  </span>
+                ) : (
+                  ""
+                )}
+              </div>
+              <div className="details__other-info">
+                <span>
+                  Created: <span>{formatDate(project.created_at)}</span>
+                </span>
+                <span>
+                  Updated: <span>{formatDate(project.updated_at)}</span>
+                </span>
+                <span>
+                  Size: <span>{project.size} kb</span>
+                </span>
+                {project.language ? (
+                  <span>
+                    Language: <span>{project.language}</span>
+                  </span>
+                ) : (
+                  ""
+                )}
+              </div>
+            </div>
             <Snackbar open={open} autoHideDuration={1000} onClose={handleClose}>
               <Alert onClose={handleClose} severity="success">
                 Coppied!

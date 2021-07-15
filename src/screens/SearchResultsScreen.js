@@ -15,7 +15,8 @@ const SearchResultsScreen = ({ location }) => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const searchResults = useSelector((state) => state.profileList);
-  const { totalCount, profiles, loading, previousSearchTerm } = searchResults;
+  const { totalCount, profiles, loading, previousSearchTerm, error } =
+    searchResults;
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -50,7 +51,9 @@ const SearchResultsScreen = ({ location }) => {
         previousSearchTerm={previousSearchTerm}
       />
       <SearchContainer>
-        {loading ? (
+        {error ? (
+          <p>Something went wrong, please try again later.</p>
+        ) : loading ? (
           <div style={{ padding: "30px" }}>
             <CircularProgress size={100} />
           </div>
@@ -66,7 +69,11 @@ const SearchResultsScreen = ({ location }) => {
         ) : (
           <p>Sorry, no results.</p>
         )}
-        {profiles ? (
+        {error ? (
+          ""
+        ) : loading ? (
+          ""
+        ) : profiles ? (
           profiles.length !== 0 ? (
             <Pagination
               style={{ marginTop: "20px" }}
@@ -76,7 +83,6 @@ const SearchResultsScreen = ({ location }) => {
               page={page}
               defaultPage={page}
               size={"small"}
-              siblingCount={window.innerWidth < 300 ? 0 : 1}
             />
           ) : (
             ""

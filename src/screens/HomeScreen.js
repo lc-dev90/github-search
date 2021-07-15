@@ -38,7 +38,7 @@ const HomeScreen = () => {
           <img src={VerticalLogo} alt="Logo" />
         </div>
         <form onSubmit={submitHandler}>
-          <div className="form-control" error={error}>
+          <div className="form-control">
             <input
               type="text"
               placeholder="Enter user name"
@@ -71,7 +71,7 @@ const Main = styled.main`
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-
+  margin: 0 auto;
   input {
     background: transparent;
     border: none;

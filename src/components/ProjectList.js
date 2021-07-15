@@ -50,7 +50,6 @@ const ProjectList = ({ repositories, user }) => {
             page={page}
             defaultPage={page}
             size={"small"}
-            siblingCount={window.innerWidth < 300 ? 0 : 1}
           />
         ) : (
           ""

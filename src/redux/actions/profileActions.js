@@ -113,6 +113,7 @@ export const listProfiles =
       });
     } catch (error) {
       dispatch({
+        loading: false,
         type: PROFILE_LIST_FAIL,
         payload:
           error.response && error.response.data.message

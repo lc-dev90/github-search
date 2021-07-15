@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Pagination } from "@material-ui/lab";
-import {
-  getProfileDetails,
-  getMoreProjectsFromProfile,
-} from "../redux/actions/profileActions";
+import { getMoreProjectsFromProfile } from "../redux/actions/profileActions";
 
 import ProjectCard from "./ProjectCard";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -52,6 +49,8 @@ const ProjectList = ({ repositories, user }) => {
             onChange={handleChangePagination}
             page={page}
             defaultPage={page}
+            size={"small"}
+            siblingCount={window.innerWidth < 300 ? 0 : 1}
           />
         ) : (
           ""
@@ -71,6 +70,15 @@ const ListProject = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-gap: 40px;
   cursor: pointer;
+  @media (max-width: 561px) {
+    margin: 0 auto;
+    margin-top: 80px;
+    grid-template-columns: 300px;
+    justify-content: center;
+  }
+  @media (max-width: 350px) {
+    grid-template-columns: 95%;
+  }
   .loading {
     align-items: flex-start;
     justify-content: center;

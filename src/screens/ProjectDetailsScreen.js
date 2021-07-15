@@ -160,7 +160,8 @@ const ProjectDetailsScreen = ({ match }) => {
 export default ProjectDetailsScreen;
 
 const Main = styled.main`
-  max-width: 1024px;
+  width: 1024px;
+  max-width: 95%;
   margin: 0 auto;
   color: #b2b2b2;
   min-height: calc(100vh - 246px);
@@ -171,6 +172,10 @@ const Main = styled.main`
     flex-direction: row-reverse;
     justify-content: space-evenly;
 
+    @media (max-width: 800px) {
+      flex-direction: column;
+      align-items: center;
+    }
     .details {
       display: flex;
       flex: 1;
@@ -180,6 +185,10 @@ const Main = styled.main`
       border-radius: 10px;
       border: 5px solid transparent;
       cursor: pointer;
+      @media (max-width: 640px) {
+        width: 100%;
+      }
+
       &:hover {
         border-color: #83838312;
       }
@@ -190,6 +199,9 @@ const Main = styled.main`
           align-items: center;
           justify-content: space-between;
           padding-bottom: 30px;
+          flex-wrap: wrap;
+          @media (max-width: 757px) {
+          }
           div {
             padding-bottom: 0;
           }
@@ -197,10 +209,13 @@ const Main = styled.main`
             font-size: 1.2rem;
             text-transform: uppercase;
             color: #8752cc;
+            @media (max-width: 757px) {
+              margin-bottom: 10px;
+            }
           }
         }
         h3 {
-          margin-bottom: 0rem;
+          margin-bottom: 0.3rem;
           color: white;
           font-weight: 900;
           font-size: 1.6rem;
@@ -214,12 +229,18 @@ const Main = styled.main`
       }
       .details__links {
         margin-bottom: 15px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
         span {
           display: block;
           font-weight: 100;
           margin-bottom: 20px;
           margin-top: 5px;
           color: white;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          overflow: hidden;
           span {
             display: block;
             color: white;

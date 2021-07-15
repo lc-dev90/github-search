@@ -1,11 +1,10 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
 import { Info } from "@styled-icons/evaicons-solid/Info";
 import Tooltip from "@material-ui/core/Tooltip";
-import Fade from "react-reveal/Fade";
 
 const SearchCard = ({ avatar, username, url }) => {
   return (
@@ -39,7 +38,6 @@ const SearchCard = ({ avatar, username, url }) => {
             <i>
               <InfoIcon />
             </i>
-
             <span>Details</span>
           </span>
         </Link>
@@ -65,7 +63,6 @@ const Card = styled.div`
   display: flex;
   background: #201f1f;
   border-radius: 10px;
-
   padding: 30px;
   width: 100%;
   box-shadow: 0px 3px 17px -3px rgba(0, 0, 0, 0.49),

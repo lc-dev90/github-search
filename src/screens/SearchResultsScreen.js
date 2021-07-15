@@ -75,7 +75,7 @@ const SearchResultsScreen = ({ location }) => {
               onChange={handleChangePagination}
               page={page}
               defaultPage={page}
-              size={window.innerWidth < 560 ? "small" : "medium"}
+              size={"small"}
               siblingCount={window.innerWidth < 300 ? 0 : 1}
             />
           ) : (

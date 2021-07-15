@@ -16,56 +16,72 @@ const ProfileCard = () => {
 
   return (
     <Card>
-      <div className="card-avatar">
-        <img src={profile.avatar_url} alt="avatar" />
-      </div>
-      <div style={{ flex: "1" }}>
-        <h2 style={{ color: "#8752cc", fontSize: "1.6rem" }}>
-          {profile.name ? profile.name : profile.user}
-        </h2>
-        <span
-          style={{
-            color: "white",
-            fontWeight: "900",
-          }}
-        >
-          @{profile.twitter ? profile.twitter : profile.login}
-        </span>
-        <div className="card-location">
-          {profile.location ? (
-            <div>
-              <LocalIcon />
-              <span>{profile.location}</span>
-            </div>
-          ) : (
-            ""
-          )}
-
-          {profile.company ? (
-            <div>
-              <CompanyIcon />
-              <span>{profile.company} </span>
-            </div>
-          ) : (
-            ""
-          )}
+      <div className="box">
+        <div className="card-avatar">
+          <img src={profile.avatar_url} alt="avatar" />
         </div>
-        <div className="card-follow-information">
-          <Tooltip title="Followers" arrow placement="bottom">
-            <div>
-              <FollowersIcon /> {profile.followers}
+        <div className="total-repositories mobile">
+          <h3>Total Repositories </h3>
+          <div>
+            <div style={{ marginRight: "10px" }}>
+              <img src={TotalRepo} alt="total repositories" />
             </div>
-          </Tooltip>
-          <Tooltip title="Following" arrow placement="bottom">
-            <div>
-              <FollowingIcon /> {profile.following}
-            </div>
-          </Tooltip>
-          <Tooltip title="Stars" arrow placement="bottom">
-            <div>
-              <StarIcon /> {starred.length}
-            </div>
-          </Tooltip>
+            <h3>{profile.public_repos}</h3>
+          </div>
+        </div>
+      </div>
+
+      <div className="box-divisor-main" style={{ flex: "1" }}>
+        <div className="box-divisor">
+          <h2 style={{ color: "#8752cc", fontSize: "1.6rem" }}>
+            {profile.name ? profile.name : profile.user}
+          </h2>
+          <span
+            style={{
+              color: "white",
+              fontWeight: "900",
+            }}
+          >
+            @{profile.twitter ? profile.twitter : profile.login}
+          </span>
+        </div>
+        <div className="box-divisor">
+          <div className="card-location">
+            {profile.location ? (
+              <div>
+                <LocalIcon />
+                <span>{profile.location}</span>
+              </div>
+            ) : (
+              ""
+            )}
+
+            {profile.company ? (
+              <div>
+                <CompanyIcon />
+                <span>{profile.company} </span>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <div className="card-follow-information">
+            <Tooltip title="Followers" arrow placement="bottom">
+              <div>
+                <FollowersIcon /> {profile.followers}
+              </div>
+            </Tooltip>
+            <Tooltip title="Following" arrow placement="bottom">
+              <div>
+                <FollowingIcon /> {profile.following}
+              </div>
+            </Tooltip>
+            <Tooltip title="Stars" arrow placement="bottom">
+              <div>
+                <StarIcon /> {starred.length}
+              </div>
+            </Tooltip>
+          </div>
         </div>
       </div>
 
@@ -92,12 +108,57 @@ const Card = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+  @media (max-width: 700px) {
+    flex-direction: column;
+  }
+  .box-divisor-main {
+    @media (max-width: 700px) {
+      display: flex;
+      align-items: center;
+      .box-divisor {
+        &:nth-of-type(1) {
+          margin-right: 50px;
+          @media (max-width: 435px) {
+            margin-right: 0px;
+            margin-bottom: 20px;
+          }
+        }
+      }
+    }
+    @media (max-width: 435px) {
+      flex-direction: column;
+    }
+  }
+  .box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    @media (max-width: 435px) {
+      flex-direction: column;
+    }
+  }
+  .total-repositories.mobile {
+    display: none;
+    @media (max-width: 700px) {
+      display: block;
+    }
+    @media (max-width: 435px) {
+      display: none;
+    }
+  }
 
   .total-repositories {
+    @media (max-width: 700px) {
+      display: none;
+    }
+    @media (max-width: 435px) {
+      display: block;
+    }
     background: #201f1f;
     border-radius: 5px;
     padding: 15px 20px;
     text-align: center;
+
     h3 {
       font-size: 18px;
     }
@@ -122,6 +183,9 @@ const Card = styled.div`
     overflow: hidden;
     border-radius: 50%;
     margin-right: 40px;
+    @media (max-width: 435px) {
+      margin-right: 0px;
+    }
     img {
       width: 100%;
       object-fit: cover;
@@ -131,6 +195,13 @@ const Card = styled.div`
   .card-location {
     display: flex;
     margin-top: 24px;
+    @media (max-width: 700px) {
+      margin-top: 0;
+    }
+    @media (max-width: 435px) {
+      align-items: center;
+      justify-content: center;
+    }
     margin-bottom: 6px;
     flex-wrap: wrap;
     div {
@@ -149,6 +220,9 @@ const Card = styled.div`
 
   .card-follow-information {
     display: flex;
+    @media (max-width: 435px) {
+      margin-bottom: 24px;
+    }
     div {
       display: flex;
       align-items: center;

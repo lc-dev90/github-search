@@ -66,6 +66,8 @@ export default HomeScreen;
 
 const Main = styled.main`
   display: flex;
+  width: 900px;
+  max-width: 95%;
   align-items: center;
   justify-content: center;
   min-height: 100vh;

@@ -11,29 +11,31 @@ const ProfileMiniCard = ({ user, avatar, url }) => {
       <div>
         <img src={avatar} alt={user} />
       </div>
-      <Tooltip title={`User: ${user}`} arrow placement="left">
-        <span>
-          <i>
-            <UserIcon />
-          </i>
-          {user}
-        </span>
-      </Tooltip>
-      <Tooltip title="Click to open the profile user" arrow placement="left">
-        <a
-          style={{ marginTop: "6px", width: "100%" }}
-          href={url}
-          target="_blank"
-          rel="noreferrer"
-        >
+      <div>
+        <Tooltip title={`User: ${user}`} arrow placement="left">
           <span>
             <i>
-              <LinkExternalIcon />
+              <UserIcon />
             </i>
-            {url.split("//")[1]}
+            {user}
           </span>
-        </a>
-      </Tooltip>
+        </Tooltip>
+        <Tooltip title="Click to open the profile user" arrow placement="left">
+          <a
+            style={{ marginTop: "6px", width: "100%" }}
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <span>
+              <i>
+                <LinkExternalIcon />
+              </i>
+              {url.split("//")[1]}
+            </span>
+          </a>
+        </Tooltip>
+      </div>
     </MiniCard>
   );
 };
@@ -41,7 +43,7 @@ const ProfileMiniCard = ({ user, avatar, url }) => {
 export default ProfileMiniCard;
 const MiniCard = styled.div`
   border: 5px solid transparent;
-  width: max-content;
+
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -53,6 +55,15 @@ const MiniCard = styled.div`
   border-radius: 10px;
   font-size: 0.8rem;
   margin-left: 60px;
+  @media (max-width: 800px) {
+    margin-left: 0px;
+    margin-bottom: 40px;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 550px) {
+    flex-direction: column;
+  }
   &:hover {
     border-color: #83838312;
   }
@@ -65,11 +76,31 @@ const MiniCard = styled.div`
     width: 100%;
   }
   div {
-    margin-bottom: 24px;
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
+    &:nth-of-type(1) {
+      margin-bottom: 24px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    &:nth-of-type(2) {
+      flex: 1;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (max-width: 800px) {
+      &:nth-of-type(1) {
+        margin-bottom: 0px;
+        margin-right: 20px;
+      }
+    }
+    @media (max-width: 550px) {
+      &:nth-of-type(1) {
+        margin-bottom: 20px;
+        margin-right: 0px;
+      }
+    }
 
     img {
       object-fit: cover;

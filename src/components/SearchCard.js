@@ -5,45 +5,48 @@ import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
 import { Info } from "@styled-icons/evaicons-solid/Info";
 import Tooltip from "@material-ui/core/Tooltip";
+import Fade from "react-reveal/Fade";
 
 const SearchCard = ({ avatar, username, url }) => {
   return (
-    <Card>
-      <div>
-        <img src={avatar} alt={username} />
-      </div>
-      <div>
-        <p>
-          <i>
-            <UserIcon />
-          </i>
-          <span>{username}</span>
-        </p>
-        <p>
-          <i>
-            <LinkExternalIcon />
-          </i>
-          <Tooltip title="Click to redirect" arrow placement="bottom">
-            <Link
-              to={{ pathname: url }}
-              target="_blank"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {url}
-            </Link>
-          </Tooltip>
-        </p>
-        <Link to={`user/${username}`}>
-          <span className="information">
+    <Fade bottom>
+      <Card>
+        <div>
+          <img src={avatar} alt={username} />
+        </div>
+        <div>
+          <p>
             <i>
-              <InfoIcon />
+              <UserIcon />
             </i>
+            <span>{username}</span>
+          </p>
+          <p>
+            <i>
+              <LinkExternalIcon />
+            </i>
+            <Tooltip title="Click to redirect" arrow placement="bottom">
+              <Link
+                to={{ pathname: url }}
+                target="_blank"
+                onClick={(e) => e.stopPropagation()}
+              >
+                {url}
+              </Link>
+            </Tooltip>
+          </p>
+          <Link to={`user/${username}`}>
+            <span className="information">
+              <i>
+                <InfoIcon />
+              </i>
 
-            <span>Details</span>
-          </span>
-        </Link>
-      </div>
-    </Card>
+              <span>Details</span>
+            </span>
+          </Link>
+        </div>
+      </Card>
+    </Fade>
   );
 };
 

@@ -18,6 +18,7 @@ import { StarFill } from "@styled-icons/bootstrap/StarFill";
 import { EyeFill } from "@styled-icons/bootstrap/EyeFill";
 import { BranchFork } from "@styled-icons/fluentui-system-regular";
 import Tooltip from "@material-ui/core/Tooltip";
+import Fade from "react-reveal/Fade";
 
 const formatDate = (dateString) => {
   if (dateString) {
@@ -49,101 +50,105 @@ const ProjectDetailsScreen = ({ match }) => {
           </div>
         ) : (
           <div className="container">
-            <ProfileMiniCard
-              user={project.owner.login}
-              avatar={project.owner.avatar_url}
-              url={project.owner.html_url}
-            />
-            <div className="details">
-              <div className="details__main">
-                <div>
-                  <h2>project Details</h2>
-                  <div className="details__project_info">
-                    <span>
-                      <i>
-                        <Tooltip title="Stars" arrow placement="top">
-                          <StarIcon />
-                        </Tooltip>
-                      </i>
-                      <span>{project.stargazers_count}</span>
-                    </span>
-                    <span>
-                      <i>
-                        <Tooltip title="Watchers" arrow placement="top">
-                          <EyeIcon />
-                        </Tooltip>
-                      </i>
-                      <span>{project.watchers_count}</span>
-                    </span>
-                    <span>
-                      <i>
-                        <Tooltip title="Forks" arrow placement="top">
-                          <BranchForkIcon />
-                        </Tooltip>
-                      </i>
-                      <span>{project.forks}</span>
-                    </span>
-                    <span>
-                      <i>
-                        <Tooltip title="Subscribers" arrow placement="top">
-                          <FollowersIcon />
-                        </Tooltip>
-                      </i>
-                      <span>{project.subscribers_count} </span>
-                    </span>
+            <Fade right>
+              <ProfileMiniCard
+                user={project.owner.login}
+                avatar={project.owner.avatar_url}
+                url={project.owner.html_url}
+              />
+            </Fade>
+            <Fade left>
+              <div className="details">
+                <div className="details__main">
+                  <div>
+                    <h2>project Details</h2>
+                    <div className="details__project_info">
+                      <span>
+                        <i>
+                          <Tooltip title="Stars" arrow placement="top">
+                            <StarIcon />
+                          </Tooltip>
+                        </i>
+                        <span>{project.stargazers_count}</span>
+                      </span>
+                      <span>
+                        <i>
+                          <Tooltip title="Watchers" arrow placement="top">
+                            <EyeIcon />
+                          </Tooltip>
+                        </i>
+                        <span>{project.watchers_count}</span>
+                      </span>
+                      <span>
+                        <i>
+                          <Tooltip title="Forks" arrow placement="top">
+                            <BranchForkIcon />
+                          </Tooltip>
+                        </i>
+                        <span>{project.forks}</span>
+                      </span>
+                      <span>
+                        <i>
+                          <Tooltip title="Subscribers" arrow placement="top">
+                            <FollowersIcon />
+                          </Tooltip>
+                        </i>
+                        <span>{project.subscribers_count} </span>
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                <h3>{project.name}</h3>
-                <span>
-                  {project.description ? project.description : "None"}
-                </span>
-              </div>
-              <div className="details__links">
-                <span>
-                  Link: <span>{project.html_url}</span>
-                </span>
-                <span>
-                  Git Url: <span>{project.git_url}</span>
-                </span>
-                <span>
-                  SSH Url: <span>{project.ssh_url}</span>
-                </span>
-                {project.homepage ? (
+                  <h3>{project.name}</h3>
                   <span>
-                    Homepage: <span>{project.homepage}</span>
+                    {project.description ? project.description : "None"}
                   </span>
-                ) : (
-                  ""
-                )}
-                {project.license ? (
+                </div>
+                <div className="details__links">
                   <span>
-                    License:
-                    <span>{project.license.name}</span>
+                    Link: <span>{project.html_url}</span>
                   </span>
-                ) : (
-                  ""
-                )}
-              </div>
-              <div className="details__other-info">
-                <span>
-                  Created: <span>{formatDate(project.created_at)}</span>
-                </span>
-                <span>
-                  Updated: <span>{formatDate(project.updated_at)}</span>
-                </span>
-                <span>
-                  Size: <span>{project.size} kb</span>
-                </span>
-                {project.language ? (
                   <span>
-                    Language: <span>{project.language}</span>
+                    Git Url: <span>{project.git_url}</span>
                   </span>
-                ) : (
-                  ""
-                )}
+                  <span>
+                    SSH Url: <span>{project.ssh_url}</span>
+                  </span>
+                  {project.homepage ? (
+                    <span>
+                      Homepage: <span>{project.homepage}</span>
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                  {project.license ? (
+                    <span>
+                      License:
+                      <span>{project.license.name}</span>
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </div>
+                <div className="details__other-info">
+                  <span>
+                    Created: <span>{formatDate(project.created_at)}</span>
+                  </span>
+                  <span>
+                    Updated: <span>{formatDate(project.updated_at)}</span>
+                  </span>
+                  <span>
+                    Size: <span>{project.size} kb</span>
+                  </span>
+                  {project.language ? (
+                    <span>
+                      Language: <span>{project.language}</span>
+                    </span>
+                  ) : (
+                    ""
+                  )}
+                </div>
               </div>
-            </div>
+            </Fade>
           </div>
         )}
       </Main>

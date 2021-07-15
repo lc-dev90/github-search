@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import Fade from "react-reveal/Fade";
 
 import {
   clearListProfiles,
@@ -37,8 +38,12 @@ const ProfileScreen = ({ match }) => {
           </div>
         ) : (
           <>
-            <ProfileCard />
-            <ProjectList />
+            <Fade left>
+              <ProfileCard />
+            </Fade>
+            <Fade right>
+              <ProjectList />
+            </Fade>
           </>
         )}
       </Main>

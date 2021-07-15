@@ -85,6 +85,7 @@ const Container = styled.div`
   flex-direction: column;
   form {
     width: 100%;
+    max-width: 95%;
     .form-control {
       color: ${(props) => (props.error ? "red" : "transparent")};
     }
@@ -126,6 +127,8 @@ const Container = styled.div`
       input {
         padding: 10px 0;
         width: 100%;
+
+        margin: 0 auto;
         border: none;
         border-bottom: 4px solid;
         border-color: #8752cc;

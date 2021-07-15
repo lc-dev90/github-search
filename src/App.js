@@ -7,6 +7,7 @@ import ProjectDetailsScreen from "./screens/ProjectDetailsScreen";
 import SearchResultsScreen from "./screens/SearchResultsScreen";
 
 const App = () => {
+  window.addEventListener("resize", () => console.log(window.innerWidth));
   return (
     <Router>
       <Switch>

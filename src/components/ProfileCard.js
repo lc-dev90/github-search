@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { MapMarkerAlt } from "@styled-icons/fa-solid/MapMarkerAlt";
@@ -68,6 +68,7 @@ const ProfileCard = () => {
           </Tooltip>
         </div>
       </div>
+
       <div className="total-repositories">
         <h3>Total Repositories </h3>
         <div>
@@ -131,12 +132,17 @@ const Card = styled.div`
     display: flex;
     margin-top: 24px;
     margin-bottom: 6px;
+    flex-wrap: wrap;
     div {
       display: flex;
       align-items: center;
       justify-content: center;
-      &:first-child {
-        margin-right: 10px;
+      margin-bottom: 3px;
+      span {
+        max-width: 280px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
       }
     }
   }

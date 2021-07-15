@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import Fade from "react-reveal/Fade";
 
-import {
-  clearListProfiles,
-  getProfileDetails,
-} from "../redux/actions/profileActions";
+import { getProfileDetails } from "../redux/actions/profileActions";
 
 //Components
 import ProfileCard from "../components/ProfileCard";
@@ -55,7 +52,8 @@ const ProfileScreen = ({ match }) => {
 export default ProfileScreen;
 
 const Main = styled.main`
-  max-width: 900px;
+  width: 900px;
+  max-width: 95%;
   margin: 0 auto;
   color: #b2b2b2;
   min-height: calc(100vh - 246px);

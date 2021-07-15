@@ -27,12 +27,18 @@ export default Header;
 
 const HeaderContainer = styled.header`
   display: flex;
-  max-width: 900px;
+  width: 900px;
+  max-width: 95%;
   margin: 0 auto;
   padding: 42px 0;
   justify-content: space-between;
   align-items: center;
   div {
+    @media (max-width: 350px) {
+      img {
+        width: 140px;
+      }
+    }
   }
 `;
 

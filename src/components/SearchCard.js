@@ -9,57 +9,65 @@ import Fade from "react-reveal/Fade";
 
 const SearchCard = ({ avatar, username, url }) => {
   return (
-    <Fade bottom>
-      <Card>
-        <div>
-          <img src={avatar} alt={username} />
-        </div>
-        <div>
-          <p>
+    <Card>
+      <div>
+        <img src={avatar} alt={username} />
+      </div>
+      <div>
+        <p>
+          <i>
+            <UserIcon />
+          </i>
+          <span>{username}</span>
+        </p>
+        <p>
+          <i>
+            <LinkExternalIcon />
+          </i>
+          <Tooltip title="Click to redirect" arrow placement="bottom">
+            <Link
+              to={{ pathname: url }}
+              target="_blank"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {url}
+            </Link>
+          </Tooltip>
+        </p>
+        <Link to={`user/${username}`}>
+          <span className="information">
             <i>
-              <UserIcon />
+              <InfoIcon />
             </i>
-            <span>{username}</span>
-          </p>
-          <p>
-            <i>
-              <LinkExternalIcon />
-            </i>
-            <Tooltip title="Click to redirect" arrow placement="bottom">
-              <Link
-                to={{ pathname: url }}
-                target="_blank"
-                onClick={(e) => e.stopPropagation()}
-              >
-                {url}
-              </Link>
-            </Tooltip>
-          </p>
-          <Link to={`user/${username}`}>
-            <span className="information">
-              <i>
-                <InfoIcon />
-              </i>
 
-              <span>Details</span>
-            </span>
-          </Link>
-        </div>
-      </Card>
-    </Fade>
+            <span>Details</span>
+          </span>
+        </Link>
+      </div>
+    </Card>
   );
 };
 
 export default SearchCard;
 
 const Card = styled.div`
-  margin-bottom: 20px;
+  @media (max-width: 620px) {
+  }
+  @media (max-width: 560px) {
+    justify-content: center;
+    flex-direction: column;
+    width: 250px;
+    max-width: 95%;
+    align-items: center;
+  }
+  margin-bottom: 30px;
   position: relative;
   display: flex;
   background: #201f1f;
   border-radius: 10px;
+
   padding: 30px;
-  width: 600px;
+  width: 100%;
   box-shadow: 0px 3px 17px -3px rgba(0, 0, 0, 0.49),
     0px 3px 17px -2px rgba(0, 0, 0, 0.49);
   &:hover {
@@ -70,6 +78,9 @@ const Card = styled.div`
         .information {
           opacity: 1;
           background: rgba(10, 10, 10, 0.79);
+          @media (max-width: 560px) {
+            padding: 10px;
+          }
         }
       }
     }
@@ -81,14 +92,33 @@ const Card = styled.div`
       border-radius: 50%;
       overflow: hidden;
       margin-right: 40px;
+      @media (max-width: 560px) {
+        margin-bottom: 23px;
+        margin-right: 0px;
+      }
     }
     &:nth-of-type(2) {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
-      a {
+      p {
+        &:nth-of-type(2) {
+          @media (max-width: 560px) {
+            display: none;
+          }
+        }
       }
       .information {
+        @media (max-width: 560px) {
+          i {
+            width: 25px !important;
+          }
+          span {
+            font-size: 8px;
+            color: white;
+            margin-top: 4px !important;
+          }
+        }
         position: absolute;
         height: 100%;
         z-index: 1;
@@ -123,11 +153,18 @@ const Card = styled.div`
         align-items: center;
 
         i {
+          @media (max-width: 560px) {
+            width: 23px;
+          }
+
           width: 30px;
           display: inline-block;
           margin-right: 8px;
         }
         span {
+          @media (max-width: 560px) {
+            font-size: 1rem;
+          }
           text-transform: none;
           font-size: 1.5rem;
         }

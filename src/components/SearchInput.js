@@ -67,6 +67,7 @@ export default SearchInput;
 
 const SearchInputContainer = styled.div`
   width: 600px;
+  max-width: 95%;
   margin: 0 auto;
   padding: 20px 0 60px;
 

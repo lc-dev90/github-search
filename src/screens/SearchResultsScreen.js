@@ -75,6 +75,8 @@ const SearchResultsScreen = ({ location }) => {
               onChange={handleChangePagination}
               page={page}
               defaultPage={page}
+              size={window.innerWidth < 560 ? "small" : ""}
+              siblingCount={window.innerWidth < 300 ? 0 : ""}
             />
           ) : (
             ""
@@ -91,7 +93,8 @@ const SearchResultsScreen = ({ location }) => {
 export default SearchResultsScreen;
 
 const SearchContainer = styled.main`
-  max-width: 600px;
+  width: 600px;
+  max-width: 95%;
   margin: 0 auto;
   color: #b2b2b2;
   min-height: calc(100vh - 378px);

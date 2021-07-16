@@ -7,13 +7,14 @@ import {
   profileListReducer,
   profileDetailsReducer,
 } from "./reducers/profileReducers";
-
+import { themeReducer } from "./reducers/themeReducers";
 import { projectDetailsReducer } from "./reducers/projectReducers";
 
 const reducer = combineReducers({
   profileList: profileListReducer,
   profileDetails: profileDetailsReducer,
   projectDetails: projectDetailsReducer,
+  darkMode: themeReducer,
 });
 
 const initialState = {};

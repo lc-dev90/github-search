@@ -1,35 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Switch from "@material-ui/core/Switch";
 import { Moon } from "@styled-icons/boxicons-solid/Moon";
 import { Sun } from "@styled-icons/boxicons-solid/Sun";
 import styled from "styled-components";
 
+import { toggleDarkTheme } from "../redux/actions/themeActions";
+
 const TogglerDarkTheme = () => {
-  const [lightMode, setLightMode] = useState(false);
+  const dispatch = useDispatch();
+  const { darkMode } = useSelector((state) => state.darkMode);
 
   const toggleChecked = () => {
-    setLightMode((prev) => !prev);
-    console.log("Darkmode: ", lightMode);
+    dispatch(toggleDarkTheme());
+    console.log("Darkmode: ", darkMode);
   };
   return (
     <Toggle>
       <div>
         <i>
-          <SunIcon light={lightMode} />
+          <SunIcon light={darkMode} />
         </i>
       </div>
       <div>
-        <Switch
-          checked={!lightMode}
-          size="small"
-          onChange={toggleChecked}
-          color="primary"
-        />
+        <Switch size="small" onChange={toggleChecked} color="primary" />
       </div>
 
       <div>
         <i>
-          <MoonIcon light={lightMode} />
+          <MoonIcon light={darkMode} />
         </i>
       </div>
     </Toggle>

@@ -1,15 +1,12 @@
-import { SET_DARK_MODE, SET_LIGHT_MODE } from "../constants/themeConstants";
+import { TOGGLE_THEME } from "../constants/themeConstants";
 
-export const themeReducer = (state: { dark_mode: true }, action) => {
+export const themeReducer = (state = { darkMode: true }, action) => {
   switch (action.type) {
-    case SET_DARK_MODE:
+    case TOGGLE_THEME:
       return {
-        dark_mode: true,
+        darkMode: !state.darkMode,
       };
-    case SET_LIGHT_MODE:
-      return {
-        dark_mode: false,
-      };
+
     default:
       return state;
   }

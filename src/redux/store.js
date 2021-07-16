@@ -19,7 +19,7 @@ const reducer = combineReducers({
 
 const darkModeFromStorage = localStorage.getItem("theme")
   ? JSON.parse(localStorage.getItem("theme"))
-  : {};
+  : false;
 
 const initialState = {
   darkMode: { darkMode: darkModeFromStorage },

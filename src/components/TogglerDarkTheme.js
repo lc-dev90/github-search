@@ -19,7 +19,12 @@ const TogglerDarkTheme = () => {
         </i>
       </div>
       <div>
-        <Switch checked={!lightMode} onChange={toggleChecked} color="primary" />
+        <Switch
+          checked={!lightMode}
+          size="small"
+          onChange={toggleChecked}
+          color="primary"
+        />
       </div>
 
       <div>
@@ -35,10 +40,14 @@ export default TogglerDarkTheme;
 
 const Toggle = styled.div`
   background: rgb(10 10 10 / 50%);
-  padding: 0.5rem;
+  padding: 0.15rem 0.3rem;
   border-radius: 5px;
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
   div {
     i {
     }
@@ -47,10 +56,10 @@ const Toggle = styled.div`
 
 const SunIcon = styled(Sun)`
   color: ${(props) => (props.light ? "white" : "black")};
-  width: 25px;
+  width: 20px;
 `;
 const MoonIcon = styled(Moon)`
-  width: 20px;
+  width: 15px;
   margin-bottom: 2px;
   color: ${(props) => (props.light ? "black" : "rebeccapurple")};
 `;

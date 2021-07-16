@@ -6,11 +6,14 @@ import styled from "styled-components";
 import Logo from "../assets/logo-horizontal.svg";
 
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
+import TogglerDarkTheme from "./TogglerDarkTheme";
 
 const Header = (props) => {
   let history = useHistory();
   return (
     <HeaderContainer>
+      <TogglerDarkTheme />
+
       <Link to="/">
         <div>
           <img src={Logo} alt="Logo" />
@@ -33,8 +36,12 @@ const HeaderContainer = styled.header`
   padding: 42px 0;
   justify-content: space-between;
   align-items: center;
+  position: relative;
+  @media (max-width: 400px) {
+    padding-top: 58px;
+  }
   div {
-    @media (max-width: 350px) {
+    @media (max-width: 400px) {
       img {
         width: 140px;
       }

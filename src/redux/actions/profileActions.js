@@ -13,7 +13,7 @@ import {
   GET_MORE_PROJECTS_REQUEST,
 } from "../constants/profileConstants";
 
-const api = "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";
+const api = process.env.REACT_APP_API_KEY;
 
 export const getMoreProjectsFromProfile = (user, page) => async (dispatch) => {
   try {
@@ -51,15 +51,20 @@ export const getProfileDetails =
       dispatch({
         type: PROFILE_DETAILS_REQUEST,
       });
-      const profile = await axios.get(`https://api.github.com/users/${user}`);
-      const starred = await axios.get(
-        `https://api.github.com/users/${user}/starred`
-      );
       const options = {
         headers: {
           Authorization: api,
         },
       };
+      const profile = await axios.get(
+        `https://api.github.com/users/${user}`,
+        options
+      );
+      const starred = await axios.get(
+        `https://api.github.com/users/${user}/starred`,
+        options
+      );
+
       const repos = await axios.get(
         `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`,
         options
@@ -97,9 +102,15 @@ export const listProfiles =
       dispatch({
         type: PROFILE_LIST_REQUEST,
       });
+      const options = {
+        headers: {
+          Authorization: api,
+        },
+      };
 
       let { data } = await axios.get(
-        `https://api.github.com/search/users?q=${searchTerm}&per_page=10&page=${page}`
+        `https://api.github.com/search/users?q=${searchTerm}&per_page=10&page=${page}`,
+        options
       );
 
       dispatch({

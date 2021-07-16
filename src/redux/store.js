@@ -17,7 +17,13 @@ const reducer = combineReducers({
   darkMode: themeReducer,
 });
 
-const initialState = {};
+const darkModeFromStorage = localStorage.getItem("theme")
+  ? JSON.parse(localStorage.getItem("theme"))
+  : {};
+
+const initialState = {
+  darkMode: { darkMode: darkModeFromStorage },
+};
 
 const middleware = [thunk];
 

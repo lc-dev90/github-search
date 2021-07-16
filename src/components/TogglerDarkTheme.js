@@ -18,16 +18,21 @@ const TogglerDarkTheme = () => {
     <Toggle light={darkMode}>
       <div>
         <i>
-          <SunIcon light={darkMode} />
+          <MoonIcon light={darkMode} />
         </i>
       </div>
       <div>
-        <Switch size="small" onChange={toggleChecked} color="primary" />
+        <Switch
+          size="small"
+          onChange={toggleChecked}
+          color="primary"
+          checked={darkMode}
+        />
       </div>
 
       <div>
         <i>
-          <MoonIcon light={darkMode} />
+          <SunIcon light={darkMode} />
         </i>
       </div>
     </Toggle>

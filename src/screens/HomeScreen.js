@@ -7,6 +7,7 @@ import { clearListProfiles } from "../redux/actions/profileActions";
 
 // Components
 import VerticalLogo from "../assets/logo-vertical.svg";
+import TogglerDarkTheme from "../components/TogglerDarkTheme";
 
 const HomeScreen = () => {
   const [inputText, setInputText] = useState("");
@@ -33,6 +34,7 @@ const HomeScreen = () => {
 
   return (
     <Main>
+      <TogglerDarkTheme />
       <Container>
         <div>
           <img src={VerticalLogo} alt="Logo" />
@@ -66,6 +68,7 @@ export default HomeScreen;
 
 const Main = styled.main`
   display: flex;
+  flex-direction: column;
   width: 900px;
   max-width: 95%;
   align-items: center;

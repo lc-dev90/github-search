@@ -41,37 +41,10 @@ img {
   color: white;
 }
 
-/* .form-control {
-  position: relative;
+.MuiSwitch-colorPrimary.Mui-checked {
+  color: #8752cc !important;
 }
 
-.form-control::after {
-  position: absolute;
-  content: "Enter user name";
-  width: 100%;
-  z-index: 100;
-  top: 20%;
-  left: 48.6%;
-  transform: translateX(-22%);
-  font-size: 1.2rem;
-  font-weight: 700;
-  pointer-events: none;
-  color: #535353;
-  transition: all 400ms ease-in-out;
+.MuiSwitch-colorPrimary.Mui-checked + .MuiSwitch-track {
+  background-color: #8752ccb3 !important;
 }
-
-.form-control:focus-within::after {
-  transform: translateX(0%);
-  left: 0%;
-  top: -40%;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
-.form-control:active::after {
-  transform: translateX(0%);
-  left: 0%;
-  top: -40%;
-  font-size: 0.95rem;
-  font-weight: 600;
-}
- */

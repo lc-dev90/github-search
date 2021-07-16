@@ -25,6 +25,7 @@ export const getMoreProjectsFromProfile = (user, page) => async (dispatch) => {
         Authorization: api,
       },
     };
+    console.log(api);
     const repos = await axios.get(
       `https://api.github.com/users/${user}/repos?per_page=12&page=${page}`,
       options

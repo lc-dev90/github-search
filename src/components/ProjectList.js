@@ -9,8 +9,10 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const ProjectList = ({ repositories, user }) => {
   const [page, setPage] = useState(1);
+
   const dispatch = useDispatch();
   const profileDetails = useSelector((state) => state.profileDetails);
+  const { darkMode } = useSelector((state) => state.darkMode);
   const { profile, repos, loading_projects } = profileDetails;
   const pages = Math.ceil(profile.public_repos / 12);
 
@@ -22,7 +24,7 @@ const ProjectList = ({ repositories, user }) => {
 
   return (
     <>
-      <ListProject>
+      <ListProject darkMode={darkMode}>
         {loading_projects ? (
           <div className="loading">
             <CircularProgress size={100} />
@@ -69,6 +71,7 @@ const ListProject = styled.div`
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   grid-gap: 40px;
   cursor: pointer;
+
   @media (max-width: 561px) {
     margin: 0 auto;
     margin-top: 80px;

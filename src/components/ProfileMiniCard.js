@@ -1,13 +1,15 @@
 import React from "react";
 import styled from "styled-components";
+import { useSelector } from "react-redux";
 
 import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
 import Tooltip from "@material-ui/core/Tooltip";
 
 const ProfileMiniCard = ({ user, avatar, url }) => {
+  const { darkMode } = useSelector((state) => state.darkMode);
   return (
-    <MiniCard>
+    <MiniCard darkMode={darkMode}>
       <div>
         <img src={avatar} alt={user} />
       </div>
@@ -48,7 +50,9 @@ const MiniCard = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background: #201f1f;
+  background: ${(props) => (props.darkMode ? "#d3bdf038" : "#201f1f")};
+  box-shadow: 0px 3px 1px -3px rgb(0 0 0 / 49%),
+    0px 3px 7px -2px rgb(0 0 0 / 49%);
   padding: 30px;
   height: fit-content;
   cursor: pointer;
@@ -64,7 +68,10 @@ const MiniCard = styled.div`
   @media (max-width: 550px) {
   }
   &:hover {
-    border-color: #83838312;
+    &:hover {
+      box-shadow: 0px 3px 6px -3px rgb(0 0 0 / 49%),
+        0px 3px 12px -2px rgb(0 0 0 / 49%);
+    }
   }
   a {
     &:hover {
@@ -86,6 +93,9 @@ const MiniCard = styled.div`
       flex: 1;
       display: flex;
       flex-direction: column;
+      span {
+        color: white;
+      }
     }
     @media (max-width: 800px) {
       &:nth-of-type(1) {

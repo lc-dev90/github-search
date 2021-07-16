@@ -14,16 +14,18 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 const ProfileScreen = ({ match }) => {
   const dispatch = useDispatch();
   const profileDetails = useSelector((state) => state.profileDetails);
+  const { darkMode } = useSelector((state) => state.darkMode);
   const { loading, error } = profileDetails;
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getProfileDetails(match.params.user));
   }, []);
 
   return (
     <>
       <Header />
-      <Main>
+      <Main darkMode={darkMode}>
         {error ? (
           <div className="message">
             Something went wrong, please, try again later.
@@ -51,8 +53,17 @@ const Main = styled.main`
   width: 900px;
   max-width: 95%;
   margin: 0 auto;
-  color: #b2b2b2;
+  color: ${(props) => (props.darkMode ? "#400794" : "#b2b2b2")};
   min-height: calc(100vh - 246px);
+  .pagination {
+    ul {
+      li {
+        button {
+          color: ${(props) => (props.darkMode ? "black" : "#b2b2b2")};
+        }
+      }
+    }
+  }
   .message {
     text-align: center;
     display: flex;

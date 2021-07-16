@@ -13,9 +13,9 @@ import TotalRepo from "../assets/git_total.svg";
 const ProfileCard = () => {
   const profileDetails = useSelector((state) => state.profileDetails);
   const { profile, starred } = profileDetails;
-
+  const { darkMode } = useSelector((state) => state.darkMode);
   return (
-    <Card>
+    <Card darkMode={darkMode}>
       <div className="box">
         <div className="card-avatar">
           <img src={profile.avatar_url} alt="avatar" />
@@ -154,7 +154,7 @@ const Card = styled.div`
     @media (max-width: 435px) {
       display: block;
     }
-    background: #201f1f;
+    background: ${(props) => (props.darkMode ? "#8752cc1a" : "#201f1f")};
     border-radius: 5px;
     padding: 15px 20px;
     text-align: center;

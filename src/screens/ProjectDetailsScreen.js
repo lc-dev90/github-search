@@ -16,7 +16,6 @@ import { StarFill } from "@styled-icons/bootstrap/StarFill";
 import { EyeFill } from "@styled-icons/bootstrap/EyeFill";
 import { BranchFork } from "@styled-icons/fluentui-system-regular";
 import Tooltip from "@material-ui/core/Tooltip";
-import Fade from "react-reveal/Fade";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
@@ -38,6 +37,7 @@ const formatDate = (dateString) => {
 const ProjectDetailsScreen = ({ match }) => {
   const dispatch = useDispatch();
   const projectDetails = useSelector((state) => state.projectDetails);
+  const { darkMode } = useSelector((state) => state.darkMode);
   const { project, loading } = projectDetails;
   const [open, setOpen] = useState(false);
 
@@ -65,7 +65,7 @@ const ProjectDetailsScreen = ({ match }) => {
   return (
     <>
       <Header />
-      <Main>
+      <Main darkMode={darkMode}>
         {loading ? (
           <div className="loader">
             <CircularProgress size={100} />
@@ -218,17 +218,20 @@ const Main = styled.main`
       display: flex;
       flex: 1;
       flex-direction: column;
-      background: #201f1f;
+      background: ${(props) => (props.darkMode ? "#d3bdf038" : "#201f1f")};
       padding: 30px;
       border-radius: 10px;
       border: 5px solid transparent;
+      box-shadow: 0px 3px 1px -3px rgb(0 0 0 / 49%),
+        0px 3px 7px -2px rgb(0 0 0 / 49%);
       cursor: pointer;
       @media (max-width: 640px) {
         width: 100%;
       }
 
       &:hover {
-        border-color: #83838312;
+        box-shadow: 0px 3px 6px -3px rgb(0 0 0 / 49%),
+          0px 3px 12px -2px rgb(0 0 0 / 49%);
       }
       .details__main {
         margin-bottom: 28px;
@@ -246,6 +249,7 @@ const Main = styled.main`
           h2 {
             font-size: 1.2rem;
             text-transform: uppercase;
+
             color: #8752cc;
             @media (max-width: 757px) {
               margin-bottom: 10px;
@@ -261,7 +265,7 @@ const Main = styled.main`
         span {
           text-transform: none;
           font-size: 0.9rem;
-          color: #b2b2b2;
+          color: ${(props) => (props.darkMode ? "#8752cc" : "#b2b2b2")};
           font-weight: 400;
         }
       }
@@ -272,10 +276,10 @@ const Main = styled.main`
         overflow: hidden;
         span {
           display: block;
-          font-weight: 100;
           margin-bottom: 20px;
           margin-top: 5px;
-          color: white;
+          font-weight: ${(props) => (props.darkMode ? "300" : "100")};
+          color: ${(props) => (props.darkMode ? "black" : "#white")};
           text-overflow: ellipsis;
           white-space: nowrap;
           overflow: hidden;
@@ -299,7 +303,13 @@ const Main = styled.main`
         flex-wrap: wrap;
         span {
           display: block;
+
+          font-weight: ${(props) => (props.darkMode ? "300" : "100")};
+
+          color: ${(props) => (props.darkMode ? "black" : "white")};
           span {
+            color: white;
+            font-weight: 400;
           }
         }
       }
@@ -311,6 +321,7 @@ const Main = styled.main`
         span {
           display: inline-block;
           margin-right: 10px;
+          color: white;
           span {
           }
         }

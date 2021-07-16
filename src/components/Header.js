@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
+
 import styled from "styled-components";
 
 // Components
@@ -10,6 +11,7 @@ import TogglerDarkTheme from "./TogglerDarkTheme";
 
 const Header = (props) => {
   let history = useHistory();
+
   return (
     <HeaderContainer>
       <TogglerDarkTheme />

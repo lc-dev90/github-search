@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
@@ -15,6 +15,8 @@ const HomeScreen = () => {
   const [error, setError] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
+
+  const { darkMode } = useSelector((state) => state.darkMode);
 
   const changeHandler = (e) => {
     setInputText(e.target.value);
@@ -33,9 +35,9 @@ const HomeScreen = () => {
   };
 
   return (
-    <Main>
+    <Main darkMode={darkMode}>
       <TogglerDarkTheme />
-      <Container>
+      <Container darkMode={darkMode}>
         <div>
           <img src={VerticalLogo} alt="Logo" />
         </div>
@@ -69,8 +71,7 @@ export default HomeScreen;
 const Main = styled.main`
   display: flex;
   flex-direction: column;
-  width: 900px;
-  max-width: 95%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
@@ -138,7 +139,7 @@ const Container = styled.div`
         border: none;
         border-bottom: 4px solid;
         border-color: #8752cc;
-        color: white;
+        color: ${(props) => (props.darkMode ? "#232324" : " white")};
         caret-color: #535353;
         font-size: 18px;
         font-weight: 700;
@@ -150,7 +151,7 @@ const Container = styled.div`
           border-color: #8752cc;
         }
         ::placeholder {
-          color: #535353;
+          color: ${(props) => (props.darkMode ? "white" : "#535353 ")};
           font-size: 18px;
           text-align: center;
         }

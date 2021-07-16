@@ -5,10 +5,12 @@ import { User } from "@styled-icons/boxicons-regular/User";
 import { LinkExternal } from "@styled-icons/boxicons-regular/LinkExternal";
 import { Info } from "@styled-icons/evaicons-solid/Info";
 import Tooltip from "@material-ui/core/Tooltip";
+import { useSelector } from "react-redux";
 
 const SearchCard = ({ avatar, username, url }) => {
+  const { darkMode } = useSelector((state) => state.darkMode);
   return (
-    <Card>
+    <Card darkMode={darkMode}>
       <div>
         <img src={avatar} alt={username} />
       </div>
@@ -61,15 +63,19 @@ const Card = styled.div`
   margin-bottom: 30px;
   position: relative;
   display: flex;
-  background: #201f1f;
+  background: ${(props) => (props.darkMode ? "#d3bdf038" : "#201f1f")};
   border-radius: 10px;
   padding: 30px;
   width: 100%;
-  box-shadow: 0px 3px 17px -3px rgba(0, 0, 0, 0.49),
-    0px 3px 17px -2px rgba(0, 0, 0, 0.49);
+
+  box-shadow: ${(props) =>
+    props.darkMode
+      ? "0px 3px 1px -3px rgb(0 0 0 / 49%), 0px 3px 7px -2px rgb(0 0 0 / 49%)"
+      : "0px 3px 17px -3px rgba(0, 0, 0, 0.49), 0px 3px 17px -2px rgba(0, 0, 0, 0.49)"};
+
   &:hover {
-    box-shadow: 0px 1px 7px -1px rgba(0, 0, 0, 0.49),
-      0px 1px 7px -2px rgba(0, 0, 0, 0.49);
+    box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.49),
+      0px 1px 3px -2px rgba(0, 0, 0, 0.49);
     div {
       &:nth-of-type(2) {
         .information {
@@ -98,6 +104,7 @@ const Card = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
+      color: ${(props) => (props.darkMode ? "#400794" : "#b2b2b2")};
       p {
         &:nth-of-type(2) {
           @media (max-width: 560px) {

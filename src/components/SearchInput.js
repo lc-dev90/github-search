@@ -4,11 +4,13 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { Search } from "@styled-icons/fluentui-system-filled/Search";
 import { clearListProfiles } from "../redux/actions/profileActions";
+import { useSelector } from "react-redux";
 
 const SearchInput = ({ query, setQuery, previousSearchTerm }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [msg, setMsg] = useState("");
   const [error, setError] = useState(false);
+  const { darkMode } = useSelector((state) => state.darkMode);
   let history = useHistory();
   const dispatch = useDispatch();
 
@@ -40,7 +42,7 @@ const SearchInput = ({ query, setQuery, previousSearchTerm }) => {
   };
 
   return (
-    <SearchInputContainer>
+    <SearchInputContainer darkMode={darkMode}>
       <form onSubmit={submitHandler}>
         <div>
           <input
@@ -118,8 +120,8 @@ const SearchInputContainer = styled.div`
         width: 100%;
         outline: none;
         border: none;
-        background: #0000005e;
-        color: #b2b2b2;
+        background: ${(props) => (props.darkMode ? "#ffffff78" : "#0000005e")};
+        color: ${(props) => (props.darkMode ? "#8752cc" : "#b2b2b2")};
         padding: 1rem 1.5rem;
         border-radius: 5px;
         font-size: 1rem;

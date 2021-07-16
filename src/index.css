@@ -8,7 +8,7 @@ body {
   font-size: 18px;
   font-family: "Roboto", sans-serif;
   min-height: 100vh;
-  background: #232324;
+  /*   background: #232324; */
 }
 
 a {
@@ -34,12 +34,12 @@ img {
   justify-content: center;
 }
 
-.pagination ul li div {
+/* .pagination ul li div {
   color: white;
 }
 .pagination ul li button {
   color: white;
-}
+} */
 
 .MuiSwitch-colorPrimary.Mui-checked {
   color: #8752cc !important;

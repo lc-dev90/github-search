@@ -13,10 +13,9 @@ const TogglerDarkTheme = () => {
 
   const toggleChecked = () => {
     dispatch(toggleDarkTheme());
-    console.log("Darkmode: ", darkMode);
   };
   return (
-    <Toggle>
+    <Toggle light={darkMode}>
       <div>
         <i>
           <SunIcon light={darkMode} />
@@ -38,7 +37,8 @@ const TogglerDarkTheme = () => {
 export default TogglerDarkTheme;
 
 const Toggle = styled.div`
-  background: rgb(10 10 10 / 50%);
+  background: ${(props) =>
+    props.light ? "rgb(10 10 10 / 13%)" : "rgb(10 10 10 / 50%)"};
   padding: 0.15rem 0.3rem;
   border-radius: 5px;
   display: flex;

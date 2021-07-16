@@ -15,6 +15,7 @@ const SearchResultsScreen = ({ location }) => {
   const dispatch = useDispatch();
   const [query, setQuery] = useState("");
   const searchResults = useSelector((state) => state.profileList);
+  const { darkMode } = useSelector((state) => state.darkMode);
   const { totalCount, profiles, loading, previousSearchTerm, error } =
     searchResults;
   const [page, setPage] = useState(1);
@@ -50,7 +51,7 @@ const SearchResultsScreen = ({ location }) => {
         setQuery={setQuery}
         previousSearchTerm={previousSearchTerm}
       />
-      <SearchContainer>
+      <SearchContainer darkMode={darkMode}>
         {error ? (
           <p>Something went wrong, please try again later.</p>
         ) : loading ? (
@@ -116,10 +117,10 @@ const SearchContainer = styled.main`
     ul {
       li {
         div {
-          color: white;
+          color: ${(props) => (props.darkMode ? "black" : "#b2b2b2")};
         }
         button {
-          color: white;
+          color: ${(props) => (props.darkMode ? "black" : "#b2b2b2")};
         }
       }
     }
